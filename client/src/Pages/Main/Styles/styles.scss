@@ -1,0 +1,83 @@
+@import '../../../styles/colors.scss';
+
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+}
+
+.title {
+    width: 100vw;
+    height: 70vh;
+    background-color: $sidebar-color;
+    display: flex;
+    flex: wrap;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .navbar {
+        position: fixed;
+        width: 100vw;
+        height: 10vh;
+        background-color: $sidebar-color;
+        box-shadow: 0px 2px 10px rgba($color: #000000, $alpha: 0.1);
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .btn-login {
+            width: 75px;
+            height: 40px;
+            margin: 50px;
+            border-radius: 10px;
+            border: none;
+            background-color: transparent;
+            color: $third-font-color;
+            border: 1px solid $main-font-color;
+            transition: .3s;
+
+            &:hover {
+                cursor: pointer;
+                color: $main-font-color;
+                transition: .3s;
+                background-color: $third-font-color;
+            }
+        }
+
+    }
+    
+    .title-h1 {
+        font-size: 8rem;
+        color: $main-font-color;
+        padding-top: 10%;
+    }
+
+    .wrapper-title-paragraph {
+        width: 100vw;
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 5%;
+    }
+
+    .title-paragraph {
+        color: $secondary-font-color;
+    }
+}
+
+.presentation {
+    width: 10vw;
+    height: 1000px;
+}
+
+
+body {
+    overflow-x: hidden;
+}

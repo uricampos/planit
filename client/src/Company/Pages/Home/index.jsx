@@ -1,7 +1,7 @@
 import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
-import Sidebar from '../Sidebar';
+import Sidebar from '../../Components/Sidebar';
 
 import './Styles/styles.css';
 

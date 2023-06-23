@@ -2,7 +2,7 @@ import React from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 
-import Sidebar from '../Sidebar';
+import Sidebar from '../../Components/Sidebar';
 
 import './Styles/styles.css';
 import '../../../../node_modules/react-big-calendar/lib/css/react-big-calendar.css';
