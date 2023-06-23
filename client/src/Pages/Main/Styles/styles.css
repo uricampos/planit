@@ -48,7 +48,7 @@
 .title .title-h1 {
   font-size: 8rem;
   color: rgba(255, 255, 255, 0.96);
-  padding-top: 10%;
+  margin-top: 10%;
 }
 .title .wrapper-title-paragraph {
   width: 100vw;
