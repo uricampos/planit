@@ -19,7 +19,7 @@ let events = [
 
 function Agenda() {
     return (
-        <div className='container'>
+        <div className="container">
             <div className="sidebar">
                 <Sidebar />
             </div>
@@ -27,7 +27,6 @@ function Agenda() {
                 <Calendar
                     localizer={localizer}
                     events={events}
-                    style={{ heigth: 500 }}
                 />
             </div>
         </div>

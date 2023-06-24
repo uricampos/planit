@@ -30,6 +30,7 @@ function Home() {
             </div>
             <div style={{ height: '100%', width: '100%' }}>
                 <DataGrid
+                    style={{height: "100vh"}}
                     checkboxSelection={true}
                     rows={rows}
                     columns={columns}

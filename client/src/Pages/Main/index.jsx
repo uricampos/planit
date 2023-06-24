@@ -9,7 +9,7 @@ function Main() {
     const isInView = useInView(ref, { once: true });
 
     return (
-        <div className="container">
+        <div className="container-main">
             <motion.div className="title">
                 <div className="navbar">
                     <motion.button

@@ -10,7 +10,7 @@ function Perfil() {
             <div className="sidebar">
                 <Sidebar />
             </div>
-            <h1>Profile</h1>
+            <h1 style={{height: "100vh"}}>Profile</h1>
         </div>
     );
 }
