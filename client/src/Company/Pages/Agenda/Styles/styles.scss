@@ -3,6 +3,10 @@
     height: 100%;
     display: flex;
 
+    @media screen and (max-width: 940px) {
+        flex-direction: column;
+    }
+
 
     .calendar {
         width: 100%;
