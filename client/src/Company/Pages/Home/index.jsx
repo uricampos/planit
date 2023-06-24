@@ -28,9 +28,12 @@ function Home() {
             <div className="sidebar">
                 <Sidebar />
             </div>
-            <div style={{ height: '100%', width: '100%' }}>
+            <div
+                style={{ height: '100%', width: '100%' }}
+                className="data-grid"
+            >
                 <DataGrid
-                    style={{height: "100vh"}}
+                    style={{ height: '100vh' }}
                     checkboxSelection={true}
                     rows={rows}
                     columns={columns}

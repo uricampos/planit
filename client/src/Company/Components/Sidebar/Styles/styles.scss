@@ -49,6 +49,12 @@
     #active {
         background-color: $sidebar-hover-color;
         border-left: 2px solid white;
+
+        @media screen and (max-width: 940px) {
+            border-left: none;
+            border-top: 2px solid white;
+        }
+
     }
 
     #icon {

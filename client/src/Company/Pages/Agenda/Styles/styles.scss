@@ -12,6 +12,17 @@
         width: 100%;
         height: 100vh;
         padding: 30px;
+
+        ::-webkit-scrollbar {
+            width: .5rem;
+            background: #fff;
+        }
+        
+        
+        ::-webkit-scrollbar-thumb {
+            border-radius: 15px;
+            background: rgba($color: #000, $alpha: 0.2);
+        }
     }
 }
 
