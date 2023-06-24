@@ -49,6 +49,12 @@
   background-color: #293846;
   border-left: 2px solid white;
 }
+@media screen and (max-width: 940px) {
+  .SidebarList #active {
+    border-left: none;
+    border-top: 2px solid white;
+  }
+}
 .SidebarList #icon {
   flex: 30%;
   display: grid;
