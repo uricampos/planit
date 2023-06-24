@@ -1,9 +1,16 @@
-@import '../../../styles/colors.scss';
+@import '../../../../styles/colors.scss';
 
 .Sidebar {
     height: 100vh;
     width: 250px;
     background-color: $sidebar-color;
+
+    @media screen and (max-width: 940px) {
+        width: 100vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .SidebarList {
@@ -28,6 +35,15 @@
             background-color: $sidebar-hover-color;
             transition: .1s;
         }
+
+        @media screen and (max-width: 940px) {
+            padding: 20px;
+            flex-direction: column;
+        }
+    }
+
+    @media screen and (max-width: 940px) {
+        display: flex;
     }
 
     #active {
