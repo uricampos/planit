@@ -56,6 +56,23 @@
         color: $main-font-color;
         margin-top: 15%;
         cursor: pointer;
+
+        @media screen and (max-width: 1024px) {
+            margin-top: 30%;
+        }
+
+        @media screen and (max-width: 768px) {
+            font-size: 8rem;
+        }
+
+        @media screen and (max-width: 425px) {
+            margin-top: 70%;
+            font-size: 6rem;
+        }
+
+        @media screen and (max-width: 320px) {
+            font-size: 4rem;
+        }
     }
 
     .wrapper-title-paragraph {
@@ -71,6 +88,14 @@
     .title-paragraph {
         font-size: 1.1rem;
         color: $secondary-font-color;
+
+        @media screen and (max-width: 768px) {
+            font-size: 1rem;
+        }
+
+        @media screen and (max-width: 425px) {
+            font-size: .8rem;
+        }
     }
 }
 
@@ -81,6 +106,10 @@
     display: flex;
     justify-content: space-around;
 
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
+
     .presentation-left-div {
         width: 50%;
         height: 100%;
@@ -88,12 +117,25 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+
+        @media screen and (max-width: 768px) {
+            width: 100%;
+            height: 50%;
+        }
     }
 
     .presentation-paragraph {
         padding: 8%;
         font-size: 1.2rem;
         color: $secondary-font-color;
+
+        @media screen and (max-width: 768px) {
+            font-size: 1rem;
+        }
+        
+        @media screen and (max-width: 425px) {
+            font-size: .8rem;
+        }
     }
 
     .presentation-right-div {
@@ -103,6 +145,11 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+
+        @media screen and (max-width: 768px) {
+            width: 100%;
+            height: 50%;
+        }
     }
 }
 
@@ -114,6 +161,10 @@
     align-items: center;
     background-color: $sidebar-color;
 
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
+
     .presentation-2-left-div {
         width: 50%;
         height: 100%;
@@ -121,6 +172,11 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+
+        @media screen and (max-width: 768px) {
+            width: 100%;
+            height: 50%;
+        }
     }
 
     .presentation-2-right-div {
@@ -130,12 +186,25 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+
+        @media screen and (max-width: 768px) {
+            width: 100%;
+            height: 50%;
+        }
     }
 
     .presentation-2-paragraph {
         padding: 8%;
         font-size: 1.2rem;
         color: $secondary-font-color;
+
+        @media screen and (max-width: 768px) {
+            font-size: 1rem;
+        }
+
+        @media screen and (max-width: 425px) {
+            font-size: .8rem;
+        }
     }
 }
 
@@ -155,6 +224,10 @@
     .footer-p-contact {
         margin: 20px;
         margin-right: 30px;
+
+        @media screen and (max-width: 768px) {
+            margin-left: 100px;
+        }
     }
 
     p {
@@ -166,9 +239,16 @@
             color: $main-font-color;
             transition: .3s;
         }
+
+        @media screen and (max-width: 320px) {
+            font-size: .7rem;
+        }
     }
+
 }
 
 body {
+    width: 100%;
+    height: 100%;
     overflow-x: hidden;
 }
