@@ -1,16 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
 
-import Agenda from './Company/Components/Agenda';
-import Profile from './Company/Components/Profile'
-import Home from './Company/Components/Home';
-import Main from './Components/Main';
+import Main from './Pages/Main';
+import Login from './Pages/Login';
+import Home from './Company/Pages/Home';
+import Profile from './Company/Pages/Profile';
+import Agenda from './Company/Pages/Agenda';
 
 import './styles/globals.css';
 
 function App() {
     return (
         <Routes>
-            <Route path='/' element={<Main />} />
+            <Route path="/" element={<Main />} />
+            <Route path='/login' element={<Login />} />
             <Route path="empresa/home" element={<Home />} />
             <Route path="empresa/profile" element={<Profile />} />
             <Route path="empresa/agenda" element={<Agenda />} />

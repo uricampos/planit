@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.data-grid ::-webkit-scrollbar {
+  width: 0.5rem;
+  background: #fff;
+}
+.data-grid ::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,32 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+@media screen and (max-width: 940px) {
+  .container {
+    flex-direction: column;
+  }
+}
+.container .calendar {
+  width: 100%;
+  height: 100vh;
+  padding: 30px;
+}
+.container .calendar ::-webkit-scrollbar {
+  width: 0.5rem;
+  background: #fff;
+}
+.container .calendar ::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+/*# sourceMappingURL=styles.css.map */

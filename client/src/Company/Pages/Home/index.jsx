@@ -1,7 +1,7 @@
 import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
-import Sidebar from '../Sidebar';
+import Sidebar from '../../Components/Sidebar';
 
 import './Styles/styles.css';
 
@@ -28,8 +28,12 @@ function Home() {
             <div className="sidebar">
                 <Sidebar />
             </div>
-            <div style={{ height: '100%', width: '100%' }}>
+            <div
+                style={{ height: '100%', width: '100%' }}
+                className="data-grid"
+            >
                 <DataGrid
+                    style={{ height: '100vh' }}
                     checkboxSelection={true}
                     rows={rows}
                     columns={columns}

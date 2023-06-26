@@ -2,7 +2,7 @@ import React from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 
-import Sidebar from '../Sidebar';
+import Sidebar from '../../Components/Sidebar';
 
 import './Styles/styles.css';
 import '../../../../node_modules/react-big-calendar/lib/css/react-big-calendar.css';
@@ -19,7 +19,7 @@ let events = [
 
 function Agenda() {
     return (
-        <div className='container'>
+        <div className="container">
             <div className="sidebar">
                 <Sidebar />
             </div>
@@ -27,7 +27,6 @@ function Agenda() {
                 <Calendar
                     localizer={localizer}
                     events={events}
-                    style={{ heigth: 500 }}
                 />
             </div>
         </div>

@@ -3,6 +3,14 @@
   width: 250px;
   background-color: #2f4050;
 }
+@media screen and (max-width: 940px) {
+  .Sidebar {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 .SidebarList {
   height: auto;
@@ -26,9 +34,26 @@
   background-color: #293846;
   transition: 0.1s;
 }
+@media screen and (max-width: 940px) {
+  .SidebarList .row {
+    padding: 20px;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 940px) {
+  .SidebarList {
+    display: flex;
+  }
+}
 .SidebarList #active {
   background-color: #293846;
   border-left: 2px solid white;
+}
+@media screen and (max-width: 940px) {
+  .SidebarList #active {
+    border-left: none;
+    border-top: 2px solid white;
+  }
 }
 .SidebarList #icon {
   flex: 30%;
