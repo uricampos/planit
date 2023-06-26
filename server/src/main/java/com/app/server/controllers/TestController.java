@@ -5,10 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TestController {
-    @GetMapping(value = "/login")
-    public String login() {
-        return "Login page";
-    }
+
 
     @GetMapping(value = "/register")
     public String register() {
