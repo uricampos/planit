@@ -1,11 +1,11 @@
 package com.app.server.entities;
 
 import com.app.server.entities.pk.AppointmentPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "tb_appointments")
@@ -28,6 +28,7 @@ public class Appointment implements Serializable {
     public Appointment() {
     }
 
+    @JsonIgnore
     public User getUser() {
         return id.getUser();
     }

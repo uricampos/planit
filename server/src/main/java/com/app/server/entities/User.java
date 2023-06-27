@@ -1,10 +1,12 @@
 package com.app.server.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_users")
@@ -15,6 +17,8 @@ public class User {
     private String username;
     private String email;
     private String password;
+    @OneToMany(mappedBy = "id.user")
+    private Set<Appointment> appointments;
 
     public User(Long id, String username, String email, String password) {
         this.id = id;
@@ -24,6 +28,11 @@ public class User {
     }
 
     public User() {
+    }
+
+    @JsonIgnore
+    public Set<Appointment> getAppointments() {
+        return appointments;
     }
 
     public Long getId() {

@@ -1,5 +1,6 @@
 package com.app.server.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -39,6 +40,7 @@ public class Product implements Serializable {
         this.id = id;
     }
 
+    @JsonIgnore
     public Organization getOrganization() {
         return organization;
     }

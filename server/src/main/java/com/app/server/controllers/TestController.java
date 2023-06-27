@@ -1,6 +1,7 @@
 package com.app.server.controllers;
 
 import com.app.server.repositories.OrderRepository;
+import com.app.server.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,10 @@ public class TestController {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
 
     @GetMapping(value = "/register")
     public String register() {
@@ -25,5 +30,10 @@ public class TestController {
     @GetMapping(value = "/")
     public ResponseEntity home() {
         return ResponseEntity.ok().body(orderRepository.findById(1L).get());
+    }
+
+    @GetMapping(value = "/usr")
+    public ResponseEntity usr() {
+        return ResponseEntity.ok().body(userRepository.findById(1L));
     }
 }

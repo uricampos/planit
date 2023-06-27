@@ -1,5 +1,6 @@
 package com.app.server.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -28,6 +29,7 @@ public class Order implements Serializable {
         this.user = user;
     }
 
+    @JsonIgnore
     public User getUser() {
         return user;
     }
@@ -59,5 +61,13 @@ public class Order implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public Double getTotal() {
+        var total = 0.0;
+        for (OrderItem item : items) {
+            total += item.getPrice() * item.getQuantity();
+        }
+        return total;
     }
 }

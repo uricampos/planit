@@ -45,7 +45,7 @@ public class TestConfig implements CommandLineRunner {
         Order or1 = new Order(null, u1);
         orderRepository.save(or1);
 
-        OrderItem oi1 = new OrderItem(p1, or1, 1, p1.getPrice());
+        OrderItem oi1 = new OrderItem(p1, or1, 2, p1.getPrice());
         orderItemRepository.save(oi1);
 
         Appointment a1 = new Appointment(u1, o1, Date.valueOf("2023-05-07"), or1);
