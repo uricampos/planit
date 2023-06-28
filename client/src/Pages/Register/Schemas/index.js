@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const passwordRules =
-    '^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$';
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{5,}$/;
 //Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
 
 export const registerSchema = yup.object().shape({

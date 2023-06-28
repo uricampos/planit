@@ -4,12 +4,13 @@ import { useFormik } from 'formik';
 import './Styles/styles.css';
 import { registerSchema } from './Schemas';
 
-const onSubmit = () => {
+const onSubmit = (values, actions) => {
     console.log("enviado!");
+    actions.resetForm()
 }
 
 function Register() {
-    const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit, isSubmitting } = useFormik({
         initialValues: {
             name: '',
             email: '',
@@ -33,7 +34,9 @@ function Register() {
                             value={values.name}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            className={errors.name && touched.name ? "input-error" : ""}
                         />
+                        {errors.name && touched.name && <p className='error-paragraph'>{errors.name}</p>}
                         <label htmlFor="email">Email</label>
                         <input
                             id="email"
@@ -42,7 +45,9 @@ function Register() {
                             value={values.email}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            className={errors.email && touched.email ? "input-error" : ""}
                         />
+                        {errors.email && touched.email && <p className='error-paragraph'>{errors.email}</p>}
                         <label htmlFor="password">Password</label>
                         <input
                             id="password"
@@ -51,7 +56,9 @@ function Register() {
                             value={values.password}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            className={errors.password && touched.password ? "input-error" : ""}
                         />
+                        {errors.password && touched.password && <p className='error-paragraph'>{errors.password}</p>}
                         <label htmlFor="confirmPassword">
                             Confirm Password
                         </label>
@@ -62,8 +69,10 @@ function Register() {
                             value={values.confirmPassword}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            className={errors.confirmPassword && touched.confirmPassword ? "input-error" : ""}
                         />
-                        <button className="btn-submit">Submit</button>
+                        {errors.confirmPassword && touched.confirmPassword && <p className='error-paragraph'>{errors.confirmPassword}</p>}
+                        <button disabled={isSubmitting} className="btn-submit">Submit</button>
                     </form>
                 </div>
             </div>

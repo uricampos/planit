@@ -24,5 +24,12 @@
   flex: 100%;
   background-color: aqua;
 }
+.card-register .input-error {
+  border-color: #fc8181;
+}
+.card-register button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
 
 /*# sourceMappingURL=styles.css.map */

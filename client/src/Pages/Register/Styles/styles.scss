@@ -28,5 +28,14 @@
         background-color: aqua;
         
     }
+
+    .input-error {
+        border-color: $error-color;
+    }
+
+    button:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
 }
 
