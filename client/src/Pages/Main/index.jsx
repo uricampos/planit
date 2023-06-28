@@ -190,7 +190,7 @@ function Main() {
                     className="footer-p-name"
                     onClick={() => (window.location.pathname = '/')}
                 >
-                    platnit.com
+                    planit.com
                 </p>
                 <p className="footer-p-contact">planit@planit.com</p>
             </footer>
