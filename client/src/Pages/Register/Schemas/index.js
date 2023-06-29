@@ -5,7 +5,7 @@ const passwordRules =
 //Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
 
 export const registerSchema = yup.object().shape({
-    name: yup.string().required('Coloque seu nome'),
+    name: yup.string().min(8, "Insira seu nome completo.").required('Coloque seu nome'),
     email: yup
         .string()
         .email('Por favor, entre um email válido.')
