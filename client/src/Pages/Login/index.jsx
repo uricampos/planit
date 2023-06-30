@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useFormik } from 'formik';
-import { loginSchema } from '../Register/Schemas';
+import { loginSchema } from '../Schemas';
 
 import './Styles/styles.css';
 
@@ -43,7 +43,7 @@ function Login() {
                             <input
                                 id="email"
                                 type="email"
-                                className={errors.email ? 'input-error' : ''}
+                                className={errors.email && touched.email ? 'input-error' : ''}
                                 placeholder="Insira seu email"
                                 value={values.email}
                                 onChange={handleChange}
@@ -63,7 +63,7 @@ function Login() {
                             <input
                                 id="password"
                                 type="password"
-                                className={errors.password ? 'input-error' : ''}
+                                className={errors.password && touched.password ? 'input-error' : ''}
                                 placeholder="Insira sua senha"
                                 value={values.password}
                                 onChange={handleChange}
@@ -80,7 +80,9 @@ function Login() {
                                 disabled={
                                     isSubmitting ||
                                     errors.email ||
-                                    errors.password
+                                    errors.password ||
+                                    values.email == '' ||
+                                    values.password == ''
                                 }
                             >
                                 Login

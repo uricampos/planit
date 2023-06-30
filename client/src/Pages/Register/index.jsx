@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 
 import './Styles/styles.css';
-import { registerSchema } from './Schemas';
+import { registerSchema } from '../Schemas';
 
 const onSubmit = (values, actions) => {
     console.log('enviado!', values);
@@ -120,7 +120,11 @@ function Register() {
                                 errors.name ||
                                 errors.email ||
                                 errors.password ||
-                                errors.confirmPassword
+                                errors.confirmPassword ||
+                                values.name == '' ||
+                                values.email == '' ||
+                                values.password == '' ||
+                                values.confirmPassword == ''
                             }
                             className="btn-register-submit"
                         >
