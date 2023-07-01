@@ -38,6 +38,13 @@
             padding: 20px;
             margin-bottom: 5px;
             color: white;
+            transition: .5s;
+
+            &:focus {
+                scale: 1.03;
+                transition: .5s;
+                box-shadow: 0px 0px 15px -10px rgba(255,255,255,1);
+            }
         }
 
         .input-error {

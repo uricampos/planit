@@ -5,11 +5,12 @@
 
     @media screen and (max-width: 940px) {
         flex-direction: column;
+        overflow-x: hidden;
     }
 
 
     .calendar {
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         padding: 30px;
 
@@ -31,4 +32,5 @@ body {
     width: 100vw;
     display: flex;
     flex-direction: column;
+    background-color: #fff;
 }

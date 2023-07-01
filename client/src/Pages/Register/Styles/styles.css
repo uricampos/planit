@@ -33,6 +33,12 @@
   padding: 20px;
   margin-bottom: 5px;
   color: white;
+  transition: 0.5s;
+}
+.form-register input:focus {
+  scale: 1.03;
+  transition: 0.5s;
+  box-shadow: 0px 0px 15px -10px rgb(255, 255, 255);
 }
 .form-register .input-error {
   border-color: #fc8181;
