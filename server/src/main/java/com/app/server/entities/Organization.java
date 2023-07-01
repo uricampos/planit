@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_organizations")
@@ -18,6 +19,8 @@ public class Organization implements Serializable {
     @Column(columnDefinition = "TEXT")
     @NotBlank(message = "Description can't be null")
     private String description;
+    @OneToMany(mappedBy = "id.organization")
+    private Set<Appointment> appointments;
 
     public Organization() {
     }
@@ -26,6 +29,10 @@ public class Organization implements Serializable {
         this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    public Set<Appointment> getAppointments() {
+        return appointments;
     }
 
     public Long getId() {

@@ -32,7 +32,7 @@ public class Appointment implements Serializable {
     public User getUser() {
         return id.getUser();
     }
-
+    @JsonIgnore
     public Organization getOrganization() {
         return id.getOrganization();
     }
