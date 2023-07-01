@@ -9,26 +9,14 @@
     height: 100vh;
     width: 100%;
     background-color: $sidebar-color;
-    display: grid;
-    place-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
 }
 
-.card-register {
-    width: 40vw;
-    height: 100vh;
-    background-color: $login-card-color;
-    border-radius: 5%;
-    box-shadow: 0px 0px 15px -10px rgba(255,255,255,1);
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-
     .form-register {
-        display: flex;
-        padding-right: 20px;
-        padding-left: 20px;
-        flex-direction: column;
-        justify-content: space-between;
+        width: 50%;
 
         div {
             display: flex;
@@ -50,6 +38,13 @@
             padding: 20px;
             margin-bottom: 5px;
             color: white;
+            transition: .5s;
+
+            &:focus {
+                scale: 1.03;
+                transition: .5s;
+                box-shadow: 0px 0px 15px -10px rgba(255,255,255,1);
+            }
         }
 
         .input-error {
@@ -67,11 +62,12 @@
             justify-content: center;
             align-items: center;
             padding-top: 10px;
+            margin-bottom: 20px;
         }
     }
 
     .btn-register-submit {
-        width: 75px;
+        width: 100px;
         height: 40px;
         margin: 50px;
         border-radius: 10px;
@@ -91,6 +87,10 @@
 
     button:disabled {
         opacity: 0.35;
-        cursor: not-allowed;
+
+        &:hover {
+            cursor: not-allowed;
+            background-color: transparent;
+            color: $third-font-color;
+        }
     }
-}
