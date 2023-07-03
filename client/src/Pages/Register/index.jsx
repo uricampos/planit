@@ -32,7 +32,7 @@ function Register() {
     const [checkInputUser, setCheckInputUser] = useState(false);
     const [checkInputCompany, setCheckInputCompany] = useState(false);
 
-    const check = () => {
+    const handleInputsCheck = () => {
         const user = document.getElementById('user');
         const company = document.getElementById('company');
 
@@ -133,7 +133,7 @@ function Register() {
                     )}
                     <div className="div-checkbox">
                         <input
-                            onClick={() => check()}
+                            onClick={() => handleInputsCheck()}
                             type="radio"
                             name="check"
                             id="user"
@@ -145,7 +145,7 @@ function Register() {
                             Consumidor
                         </label>
                         <input
-                            onClick={() => check()}
+                            onClick={() => handleInputsCheck()}
                             type="radio"
                             name="check"
                             id="company"
@@ -174,6 +174,7 @@ function Register() {
                                     checkInputUser == false)
                             }
                             className="btn-register-submit"
+                            onClick={() => checkInputCompany ? window.location.pathname = "/register/empresa" : window.location.pathname = "/user"}
                         >
                             Registrar
                         </button>
