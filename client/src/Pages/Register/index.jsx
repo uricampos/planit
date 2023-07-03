@@ -174,6 +174,7 @@ function Register() {
                                     checkInputUser == false)
                             }
                             className="btn-register-submit"
+                            onClick={() => checkInputCompany ? window.location.pathname = "/register/empresa" : window.location.pathname = "/user"}
                         >
                             Registrar
                         </button>
