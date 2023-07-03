@@ -14,6 +14,10 @@ public class Organization implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Email can't be null")
+    private String email;
+    @NotBlank(message = "Password can't be null")
+    private String password;
     @NotBlank(message = "Name can't be null")
     private String name;
     @Column(columnDefinition = "TEXT")
@@ -25,10 +29,28 @@ public class Organization implements Serializable {
     public Organization() {
     }
 
-    public Organization(Long id, String name, String description) {
+    public Organization(Long id, String email, String password, String name, String description) {
         this.id = id;
+        this.email = email;
+        this.password = password;
         this.name = name;
         this.description = description;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<Appointment> getAppointments() {

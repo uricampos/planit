@@ -38,7 +38,7 @@ public class TestConfig implements CommandLineRunner {
         User u2 = new User(null, "test2", "test2@test2.com", "pwdd");
         userRepository.saveAll(Arrays.asList(u1, u2));
 
-        Organization o1 = new Organization(null, "Joca's barber", "barber");
+        Organization o1 = new Organization(null, "joca@jocabarber.com", "pwd", "Joca's barber", "barber");
         organizationRepository.save(o1);
 
         Product p1 = new Product(null, o1, "Disfarce", "corte de cria", 25.0);
