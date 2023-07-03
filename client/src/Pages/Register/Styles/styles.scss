@@ -6,7 +6,7 @@
 }
 
 .container-register {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background-color: $sidebar-color;
     display: flex;
@@ -44,6 +44,29 @@
                 transform: scaleX(1.03);
                 transition: .5s;
                 box-shadow: 0px 0px 15px -10px rgba(255,255,255,1);
+            }
+        }
+
+        .div-checkbox {
+            display: flex;
+            flex-direction: row;
+            width: 20%;
+            align-items: center;
+            margin-left: 5%;
+            margin-top: 2%;
+
+        .checked-input {
+            color: $main-font-color;
+        }
+
+            label {
+                margin-bottom: 12%;
+                color: $third-font-color;
+                transition: .3s;
+            }
+
+            input {
+                margin-left: 15px;
             }
         }
 
