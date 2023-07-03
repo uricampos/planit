@@ -3,7 +3,7 @@
 }
 
 .container-register {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: #2f4050;
   display: flex;
@@ -39,6 +39,25 @@
   transform: scaleX(1.03);
   transition: 0.5s;
   box-shadow: 0px 0px 15px -10px rgb(255, 255, 255);
+}
+.form-register .div-checkbox {
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+  align-items: center;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+.form-register .div-checkbox .checked-input {
+  color: rgba(255, 255, 255, 0.96);
+}
+.form-register .div-checkbox label {
+  margin-bottom: 12%;
+  color: rgba(255, 255, 255, 0.45);
+  transition: 0.3s;
+}
+.form-register .div-checkbox input {
+  margin-left: 15px;
 }
 .form-register .input-error {
   border-color: #fc8181;

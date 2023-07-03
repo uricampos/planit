@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 
 import './Styles/styles.css';
@@ -28,6 +28,25 @@ function Register() {
         validationSchema: registerSchema,
         onSubmit,
     });
+
+    const [checkInputUser, setCheckInputUser] = useState(false);
+    const [checkInputCompany, setCheckInputCompany] = useState(false);
+
+    const check = () => {
+        const user = document.getElementById('user');
+        const company = document.getElementById('company');
+
+        user.checked
+            ? setCheckInputUser(true) && user.classList.add('checked-input')
+            : setCheckInputUser(false) &&
+              user.classList.remove('checked-input');
+
+        company.checked
+            ? setCheckInputCompany(true) &&
+              company.classList.add('checked-input')
+            : setCheckInputCompany(false) &&
+              company.classList.remove('checked-input');
+    };
 
     return (
         <div className="container-register">
@@ -112,6 +131,32 @@ function Register() {
                             {errors.confirmPassword}
                         </p>
                     )}
+                    <div className="div-checkbox">
+                        <input
+                            onClick={() => check()}
+                            type="radio"
+                            name="check"
+                            id="user"
+                        />
+                        <label
+                            className={checkInputUser ? 'checked-input' : ''}
+                            htmlFor="user"
+                        >
+                            Consumidor
+                        </label>
+                        <input
+                            onClick={() => check()}
+                            type="radio"
+                            name="check"
+                            id="company"
+                        />
+                        <label
+                            className={checkInputCompany ? 'checked-input' : ''}
+                            htmlFor="company"
+                        >
+                            Empresa
+                        </label>
+                    </div>
                     <div className="div-register-btn">
                         <button
                             type="submit"
@@ -124,7 +169,9 @@ function Register() {
                                 values.name == '' ||
                                 values.email == '' ||
                                 values.password == '' ||
-                                values.confirmPassword == ''
+                                values.confirmPassword == '' ||
+                                (checkInputCompany == false &&
+                                    checkInputUser == false)
                             }
                             className="btn-register-submit"
                         >
