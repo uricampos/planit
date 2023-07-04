@@ -1,48 +1,30 @@
 package com.app.server.controllers;
 
-import com.app.server.repositories.OrderRepository;
-import com.app.server.repositories.OrganizationRepository;
-import com.app.server.repositories.UserRepository;
+import com.app.server.dto.UserDTO;
+import com.app.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
-@RestController
+@Controller
 public class TestController {
 
     @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private OrganizationRepository organizationRepository;
+    private UserService userService;
 
 
     @GetMapping(value = "/register")
-    public String register() {
-        return "Register page";
+    public String register(Model model, UserDTO userDTO) {
+        model.addAttribute("user", userDTO);
+        return "register";
     }
 
-    @GetMapping(value = "/auth")
-    public String auth() {
-        return "auth page";
-    }
-
-    @GetMapping(value = "/")
-    public ResponseEntity home() {
-        return ResponseEntity.ok().body(orderRepository.findById(1L).get());
-    }
-
-    @GetMapping(value = "/usr")
-    public ResponseEntity usr() {
-        return ResponseEntity.ok().body(userRepository.findById(1L));
-    }
-
-    @GetMapping(value = "/org")
-    public ResponseEntity org() {
-        return ResponseEntity.ok().body(organizationRepository.findById(1L));
+    @PostMapping(value = "/register")
+    public String saveRegister(@ModelAttribute("user") UserDTO userDTO) {
+        userService.save(userDTO);
+        return "register";
     }
 }

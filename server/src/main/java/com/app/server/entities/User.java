@@ -1,5 +1,6 @@
 package com.app.server.entities;
 
+import com.app.server.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -28,6 +29,12 @@ public class User {
     }
 
     public User() {
+    }
+
+    public User(UserDTO userDTO) {
+        this.username = userDTO.getUsername();
+        this.password = userDTO.getPassword();
+        this.email = userDTO.getEmail();
     }
 
     @JsonIgnore
