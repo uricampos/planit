@@ -1,6 +1,7 @@
 package com.app.server.controllers;
 
 import com.app.server.dto.UserDTO;
+import com.app.server.entities.UserLogin;
 import com.app.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,5 +27,11 @@ public class TestController {
     public String saveRegister(@ModelAttribute("user") UserDTO userDTO) {
         userService.save(userDTO);
         return "register";
+    }
+
+    @GetMapping(value = "/login")
+    public String login(Model model, UserLogin userLogin) {
+        model.addAttribute("userLogin", userLogin);
+        return "login";
     }
 }

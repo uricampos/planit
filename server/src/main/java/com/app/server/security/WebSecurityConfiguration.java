@@ -1,4 +1,3 @@
-/*
 package com.app.server.security;
 
 import org.springframework.context.annotation.Bean;
@@ -10,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -17,22 +17,26 @@ public class WebSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/", "/login", "/h2-console")
+        http.csrf()
+                .disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/register")
                 .permitAll()
-                .anyRequest()
-                .authenticated())
-                .formLogin(Customizer.withDefaults())
-                .logout((logout) -> logout
-                        .permitAll()
-                        .logoutSuccessUrl("/login"));
-        http.addFilterBefore(new SecurityFilter(), UsernamePasswordAuthenticationFilter.class);
+                .requestMatchers("/")
+                .permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/home", true)
+                .permitAll()
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll();
         return http.build();
     }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-        return configuration.getAuthenticationManager();
-    }
 }
- */

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/login}" th:object="${userLogin}">
+  <div class="container">
+    <h1>Login</h1>
+    <hr>
+
+    <label for="username"><b>Username</b></label>
+    <input type="text" th:field="*{username}" placeholder="Username" name="username" id="username" required>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" th:field="*{password}" placeholder="Password" name="password" id="password" required>
+    <hr>
+
+    <button type="submit">Log In</button>
+  </div>
+
+  <div>
+    <p>Register? <a href="/register">Register</a>.</p>
+  </div>
+</form>
+</body>
+</html>
