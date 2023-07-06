@@ -1,5 +1,6 @@
 package com.app.server.controllers;
 
+import com.app.server.dto.OrganizationDTO;
 import com.app.server.dto.OrganizationMinDTO;
 import com.app.server.dto.UserDTO;
 import com.app.server.entities.Organization;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -50,5 +52,10 @@ public class TestController {
     @GetMapping(value = "/organizations")
     public ResponseEntity<List<OrganizationMinDTO>> organizations() {
         return ResponseEntity.ok().body(organizationService.findAll());
+    }
+
+    @GetMapping(value = "/organizations/{id}")
+    public ResponseEntity<OrganizationDTO> getOrganizationById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(organizationService.findById(id));
     }
 }

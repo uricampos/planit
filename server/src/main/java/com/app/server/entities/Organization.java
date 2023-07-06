@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -24,7 +25,10 @@ public class Organization implements Serializable {
     @NotBlank(message = "Description can't be null")
     private String description;
     @OneToMany(mappedBy = "id.organization")
-    private Set<Appointment> appointments;
+    private Set<Appointment> appointments = new HashSet<>();
+
+    @OneToMany(mappedBy = "organization")
+    private Set<Product> products = new HashSet<>();
 
     public Organization() {
     }
@@ -55,6 +59,10 @@ public class Organization implements Serializable {
 
     public Set<Appointment> getAppointments() {
         return appointments;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
     }
 
     public Long getId() {
