@@ -31,6 +31,8 @@ public class WebSecurityConfiguration {
                 .permitAll()
                 .requestMatchers("/")
                 .permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")

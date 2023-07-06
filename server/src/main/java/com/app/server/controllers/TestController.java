@@ -34,4 +34,9 @@ public class TestController {
         model.addAttribute("userLogin", userLogin);
         return "login";
     }
+
+    @GetMapping(value = "/home")
+    public String home() {
+        return "home";
+    }
 }
