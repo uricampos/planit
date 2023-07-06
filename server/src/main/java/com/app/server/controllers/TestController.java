@@ -1,9 +1,11 @@
 package com.app.server.controllers;
 
+import com.app.server.dto.OrganizationMinDTO;
 import com.app.server.dto.UserDTO;
 import com.app.server.entities.Organization;
 import com.app.server.entities.UserLogin;
 import com.app.server.repositories.OrganizationRepository;
+import com.app.server.services.OrganizationService;
 import com.app.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class TestController {
     private UserService userService;
 
     @Autowired
-    private OrganizationRepository organizationRepository;
+    private OrganizationService organizationService;
 
 
     @GetMapping(value = "/register")
@@ -46,7 +48,7 @@ public class TestController {
     }
 
     @GetMapping(value = "/organizations")
-    public ResponseEntity<List<Organization>> organizations() {
-        return ResponseEntity.ok().body(organizationRepository.findAll());
+    public ResponseEntity<List<OrganizationMinDTO>> organizations() {
+        return ResponseEntity.ok().body(organizationService.findAll());
     }
 }
