@@ -25,10 +25,6 @@ public class TestController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private OrganizationService organizationService;
-
-
     @GetMapping(value = "/register")
     public void register(Model model, UserDTO userDTO) {
         model.addAttribute("user", userDTO);
@@ -47,15 +43,5 @@ public class TestController {
     @GetMapping(value = "/home")
     public String home() {
         return "home";
-    }
-
-    @GetMapping(value = "/organizations")
-    public ResponseEntity<List<OrganizationMinDTO>> organizations() {
-        return ResponseEntity.ok().body(organizationService.findAll());
-    }
-
-    @GetMapping(value = "/organizations/{id}")
-    public ResponseEntity<OrganizationDTO> getOrganizationById(@PathVariable Long id) {
-        return ResponseEntity.ok().body(organizationService.findById(id));
     }
 }
