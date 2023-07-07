@@ -1,27 +1,15 @@
 package com.app.server.controllers;
 
-import com.app.server.dto.OrganizationDTO;
-import com.app.server.dto.OrganizationMinDTO;
 import com.app.server.dto.UserDTO;
-import com.app.server.entities.Organization;
 import com.app.server.entities.UserLogin;
-import com.app.server.repositories.OrganizationRepository;
-import com.app.server.services.OrganizationService;
 import com.app.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@Controller
-public class TestController {
-
+@RestController
+@RequestMapping(value = "/auth")
+public class AuthController {
     @Autowired
     private UserService userService;
 
