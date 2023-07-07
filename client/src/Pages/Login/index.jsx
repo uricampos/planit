@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useFormik } from 'formik';
 import { loginSchema } from '../Schemas';
+import Axios from 'axios';
 
 import './Styles/styles.css';
 
 const onSubmit = (values, actions) => {
-    console.log('enviado!', values);
+    Axios.post('http://localhost:8080/auth/login', {
+        username: values.email,
+        password: values.password,
+    })
+        .then(console.log('Logado!'))
+        .catch((err) => console.log(err));
     actions.resetForm();
 };
 
@@ -43,7 +49,11 @@ function Login() {
                             <input
                                 id="email"
                                 type="email"
-                                className={errors.email && touched.email ? 'input-error' : ''}
+                                className={
+                                    errors.email && touched.email
+                                        ? 'input-error'
+                                        : ''
+                                }
                                 placeholder="Insira seu email"
                                 value={values.email}
                                 onChange={handleChange}
@@ -63,7 +73,11 @@ function Login() {
                             <input
                                 id="password"
                                 type="password"
-                                className={errors.password && touched.password ? 'input-error' : ''}
+                                className={
+                                    errors.password && touched.password
+                                        ? 'input-error'
+                                        : ''
+                                }
                                 placeholder="Insira sua senha"
                                 value={values.password}
                                 onChange={handleChange}
@@ -83,7 +97,7 @@ function Login() {
                                     errors.password ||
                                     values.email == '' ||
                                     values.password == ''
-                                }
+                                }   
                             >
                                 Login
                             </button>

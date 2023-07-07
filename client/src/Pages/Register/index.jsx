@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
+import Axios from 'axios';
 
 import './Styles/styles.css';
 import { registerSchema } from '../Schemas';
 
 const onSubmit = (values, actions) => {
-    console.log('enviado!', values);
+    Axios.post('http://localhost:8080/auth/register', {
+        username: values.name,
+        email: values.email,
+        password: values.password,
+    })
+        .then(console.log('Registrado!'))
+        .catch((err) => console.log(err));
     actions.resetForm();
 };
 
@@ -174,7 +181,13 @@ function Register() {
                                     checkInputUser == false)
                             }
                             className="btn-register-submit"
-                            onClick={() => checkInputCompany ? window.location.pathname = "/register/empresa" : window.location.pathname = "/user"}
+                            onClick={() =>
+                                checkInputCompany
+                                    ? (window.location.pathname =
+                                          '/register/empresa')
+                                    : (window.location.pathname =
+                                          '/register/usuario')
+                            }
                         >
                             Registrar
                         </button>
