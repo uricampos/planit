@@ -34,6 +34,8 @@ public class WebSecurityConfiguration {
                 .anyRequest()
                 .authenticated()
                 .and()
+                .cors()
+                .and()
                 .formLogin()
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/auth/login")
