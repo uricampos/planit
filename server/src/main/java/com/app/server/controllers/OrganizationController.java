@@ -25,5 +25,4 @@ public class OrganizationController {
     public ResponseEntity<OrganizationDTO> getOrganizationById(@PathVariable Long id) {
         return ResponseEntity.ok().body(organizationService.findById(id));
     }
-
 }

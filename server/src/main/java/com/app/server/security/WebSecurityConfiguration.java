@@ -42,6 +42,8 @@ public class WebSecurityConfiguration {
                 .defaultSuccessUrl("/organizations", true)
                 .permitAll()
                 .and()
+                .cors()
+                .and()
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
