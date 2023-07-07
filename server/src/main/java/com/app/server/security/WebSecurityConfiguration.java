@@ -44,7 +44,7 @@ public class WebSecurityConfiguration {
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/auth/login?logout")
                 .permitAll();
         return http.build();
     }
