@@ -13,13 +13,8 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/register")
-    public void register(Model model, UserDTO userDTO) {
-        model.addAttribute("user", userDTO);
-    }
-
     @PostMapping(value = "/register")
-    public void saveRegister(@ModelAttribute("user") UserDTO userDTO) {
+    public void saveRegister(@RequestBody UserDTO userDTO) {
         userService.save(userDTO);
     }
 
