@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import Axios from 'axios';
+import { api } from '../../api/';
 
 import './Styles/styles.css';
 import { registerSchema } from '../Schemas';
 
 const onSubmit = (values, actions) => {
-    Axios.post('http://localhost:8080/auth/register', {
+    Axios.post(`${api}/auth/register`, {
         username: values.name,
         email: values.email,
         password: values.password,
