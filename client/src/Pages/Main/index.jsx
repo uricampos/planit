@@ -188,7 +188,7 @@ function Main() {
             <footer className="footer">
                 <p
                     className="footer-p-name"
-                    onClick={() => (window.location.pathname = '/')}
+                    onClick={() => window.scroll({top: 0, behavior: "smooth"})}
                 >
                     planit.com
                 </p>
