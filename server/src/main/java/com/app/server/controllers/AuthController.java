@@ -1,11 +1,17 @@
 package com.app.server.controllers;
 
 import com.app.server.dto.UserDTO;
+import com.app.server.dto.UserMinDTO;
+import com.app.server.entities.User;
 import com.app.server.entities.UserLogin;
 import com.app.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/auth")
@@ -14,8 +20,14 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping(value = "/register")
-    public void saveRegister(@RequestBody UserDTO userDTO) {
-        userService.save(userDTO);
+    public ResponseEntity<UserMinDTO> saveRegister(@RequestBody UserDTO userDTO) {
+        UserMinDTO user = new UserMinDTO(userService.save(userDTO));
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(user.getId())
+                .toUri();
+        return ResponseEntity.created(uri).body(user);
     }
 
     @GetMapping(value = "/login")
