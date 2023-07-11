@@ -2,15 +2,13 @@ package com.app.server.dto;
 
 public class UserDTO {
     private String username;
-    private String email;
     private String password;
 
     public UserDTO() {
     }
 
-    public UserDTO(String username, String email, String password) {
+    public UserDTO(String username, String password) {
         this.username = username;
-        this.email = email;
         this.password = password;
     }
 
@@ -20,14 +18,6 @@ public class UserDTO {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {

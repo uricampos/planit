@@ -19,17 +19,14 @@ public class User implements UserDetails, Serializable {
     private Long id;
     @Column(nullable = false, unique = true)
     private String username;
-    @Column(nullable = false, unique = true)
-    private String email;
     @Column(nullable = false)
     private String password;
     @OneToMany(mappedBy = "id.user")
     private Set<Appointment> appointments;
 
-    public User(Long id, String username, String email, String password) {
+    public User(Long id, String username, String password) {
         this.id = id;
         this.username = username;
-        this.email = email;
         this.password = password;
     }
 
@@ -39,7 +36,6 @@ public class User implements UserDetails, Serializable {
     public User(UserDTO userDTO) {
         this.username = userDTO.getUsername();
         this.password = userDTO.getPassword();
-        this.email = userDTO.getEmail();
     }
 
     @JsonIgnore
@@ -82,14 +78,6 @@ public class User implements UserDetails, Serializable {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     @Override
