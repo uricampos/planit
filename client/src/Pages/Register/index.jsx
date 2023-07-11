@@ -12,7 +12,7 @@ const onSubmit = (values, actions) => {
         email: values.email,
         password: values.password,
     })
-        .then(console.log('Registrado!'))
+        .then((response) => console.log(response))
         .catch((err) => console.log(err));
     actions.resetForm();
 };
@@ -182,13 +182,13 @@ function Register() {
                                     checkInputUser == false)
                             }
                             className="btn-register-submit"
-                            onClick={() =>
-                                checkInputCompany
-                                    ? (window.location.pathname =
-                                          '/register/empresa')
-                                    : (window.location.pathname =
-                                          '/register/usuario')
-                            }
+                            // onClick={() =>
+                            //     checkInputCompany
+                            //         ? (window.location.pathname =
+                            //               '/register/empresa')
+                            //         : (window.location.pathname =
+                            //               '/register/usuario')
+                            // }
                         >
                             Registrar
                         </button>
