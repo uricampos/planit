@@ -4,10 +4,12 @@ import { useFormik } from 'formik';
 import { loginSchema } from '../Schemas';
 import Axios from 'axios';
 
+import { api } from '../../api';
+
 import './Styles/styles.css';
 
 const onSubmit = (values, actions) => {
-    Axios.post('http://localhost:8080/auth/login', {
+    Axios.post(`${api}/auth/login`, {
         username: values.email,
         password: values.password,
     })
@@ -97,7 +99,7 @@ function Login() {
                                     errors.password ||
                                     values.email == '' ||
                                     values.password == ''
-                                }   
+                                }
                             >
                                 Login
                             </button>
