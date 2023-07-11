@@ -41,7 +41,7 @@ public class WebSecurityConfiguration {
                 .formLogin()
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/auth/login")
-                .defaultSuccessUrl("/organizations", true)
+                .defaultSuccessUrl("/auth/login-success", true)
                 .permitAll()
                 .and()
                 .logout()

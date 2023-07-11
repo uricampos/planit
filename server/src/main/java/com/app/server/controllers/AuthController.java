@@ -7,6 +7,7 @@ import com.app.server.entities.UserLogin;
 import com.app.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -33,5 +34,10 @@ public class AuthController {
     @GetMapping(value = "/login")
     public void login(Model model, UserLogin userLogin) {
         model.addAttribute("userLogin", userLogin);
+    }
+
+    @GetMapping(value = "/login-success")
+    public ResponseEntity<User> loginSuccessful() {
+        return ResponseEntity.ok().body((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }
 }
