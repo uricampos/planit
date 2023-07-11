@@ -25,7 +25,7 @@ public class WebSecurityConfiguration {
     private UserDetailsServiceImpl userDetailsService;
 
     @Bean
-    @CrossOrigin(origins = CorsConfiguration.ALL)
+    @CrossOrigin
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
