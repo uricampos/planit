@@ -15,8 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/auth", headers = "*")
-@CrossOrigin
+@RequestMapping(value = "/auth", method = RequestMethod.POST)
 public class AuthController {
     @Autowired
     private UserService userService;
