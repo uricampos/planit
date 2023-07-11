@@ -13,7 +13,7 @@ const onSubmit = (values, actions) => {
         username: values.email,
         password: values.password,
     })
-        .then(console.log('Logado!'))
+        .then(response => console.log(response))
         .catch((err) => console.log(err));
     actions.resetForm();
 };
@@ -100,6 +100,7 @@ function Login() {
                                     values.email == '' ||
                                     values.password == ''
                                 }
+                                onClick={() => console.log("redirect")}
                             >
                                 Login
                             </button>
