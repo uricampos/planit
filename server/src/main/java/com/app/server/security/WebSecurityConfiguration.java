@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
 @EnableWebSecurity
@@ -24,7 +25,7 @@ public class WebSecurityConfiguration {
     private UserDetailsServiceImpl userDetailsService;
 
     @Bean
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = CorsConfiguration.ALL)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
