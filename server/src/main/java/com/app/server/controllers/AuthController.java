@@ -1,6 +1,7 @@
 package com.app.server.controllers;
 
 import com.app.server.dto.*;
+import com.app.server.entities.OrgLogin;
 import com.app.server.entities.Organization;
 import com.app.server.entities.User;
 import com.app.server.entities.UserLogin;
@@ -57,8 +58,8 @@ public class AuthController {
     }
 
     @GetMapping(value = "/login/org")
-    public void orgLogin(Model model, UserLogin userLogin) {
-        model.addAttribute("orgLogin", userLogin);
+    public void orgLogin(Model model, OrgLogin orgLogin) {
+        model.addAttribute("orgLogin", orgLogin);
     }
 
     @GetMapping("/org-login-success")
