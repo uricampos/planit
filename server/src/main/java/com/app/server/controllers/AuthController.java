@@ -1,9 +1,6 @@
 package com.app.server.controllers;
 
-import com.app.server.dto.OrganizationDTO;
-import com.app.server.dto.OrganizationRegisterDTO;
-import com.app.server.dto.UserDTO;
-import com.app.server.dto.UserMinDTO;
+import com.app.server.dto.*;
 import com.app.server.entities.Organization;
 import com.app.server.entities.User;
 import com.app.server.entities.UserLogin;
@@ -39,8 +36,8 @@ public class AuthController {
     }
 
     @PostMapping(value = "/register/org")
-    public ResponseEntity<Organization> saveOrgRegister(@RequestBody OrganizationRegisterDTO organizationRegisterDTO) {
-        Organization org = organizationService.save(organizationRegisterDTO);
+    public ResponseEntity<OrganizationMinDTO> saveOrgRegister(@RequestBody OrganizationRegisterDTO organizationRegisterDTO) {
+        OrganizationMinDTO org = new OrganizationMinDTO(organizationService.save(organizationRegisterDTO));
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
