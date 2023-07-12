@@ -36,7 +36,7 @@ public class WebSecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/register")
                 .permitAll()
-                .requestMatchers("/")
+                .requestMatchers("/auth/register/org")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

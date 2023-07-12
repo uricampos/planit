@@ -2,7 +2,7 @@ package com.app.server.services;
 
 import com.app.server.dto.OrganizationDTO;
 import com.app.server.dto.OrganizationMinDTO;
-import com.app.server.dto.OrganizationRegisterDAO;
+import com.app.server.dto.OrganizationRegisterDTO;
 import com.app.server.entities.Organization;
 import com.app.server.repositories.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +31,9 @@ public class OrganizationService {
         return new OrganizationDTO(organizationRepository.findById(id).get());
     }
 
-    public Organization save(OrganizationRegisterDAO organizationRegisterDAO) {
-        Organization org = new Organization(organizationRegisterDAO);
-        org.setPassword(passwordEncoder.encode(organizationRegisterDAO.getPassword()));
+    public Organization save(OrganizationRegisterDTO organizationRegisterDTO) {
+        Organization org = new Organization(organizationRegisterDTO);
+        org.setPassword(passwordEncoder.encode(organizationRegisterDTO.getPassword()));
         return organizationRepository.save(org);
     }
 }

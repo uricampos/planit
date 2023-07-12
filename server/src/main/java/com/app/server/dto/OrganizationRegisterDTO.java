@@ -1,15 +1,15 @@
 package com.app.server.dto;
 
-public class OrganizationRegisterDAO {
+public class OrganizationRegisterDTO {
     private String username;
     private String password;
     private String name;
     private String description;
 
-    public OrganizationRegisterDAO() {
+    public OrganizationRegisterDTO() {
     }
 
-    public OrganizationRegisterDAO(String username, String password, String name, String description) {
+    public OrganizationRegisterDTO(String username, String password, String name, String description) {
         this.username = username;
         this.password = password;
         this.name = name;
