@@ -55,4 +55,14 @@ public class AuthController {
     public ResponseEntity<User> loginSuccessful() {
         return ResponseEntity.ok().body((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }
+
+    @GetMapping(value = "/login/org")
+    public void orgLogin(Model model, UserLogin userLogin) {
+        model.addAttribute("orgLogin", userLogin);
+    }
+
+    @GetMapping("/org-login-success")
+    public ResponseEntity<OrganizationMinDTO> orgLoginSuccessful() {
+        return ResponseEntity.ok().body(new OrganizationMinDTO((Organization) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+    }
 }
