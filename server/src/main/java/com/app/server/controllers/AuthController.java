@@ -25,7 +25,7 @@ public class AuthController {
     @Autowired
     private OrganizationService organizationService;
 
-    @PostMapping(value = "/register")
+    @PostMapping(value = "/register/user")
     public ResponseEntity<UserMinDTO> saveUserRegister(@RequestBody UserDTO userDTO) {
         UserMinDTO user = new UserMinDTO(userService.save(userDTO));
         URI uri = ServletUriComponentsBuilder
@@ -47,7 +47,7 @@ public class AuthController {
         return ResponseEntity.created(uri).body(org);
     }
 
-    @GetMapping(value = "/login")
+    @GetMapping(value = "/login/user")
     public void login(Model model, UserLogin userLogin) {
         model.addAttribute("userLogin", userLogin);
     }

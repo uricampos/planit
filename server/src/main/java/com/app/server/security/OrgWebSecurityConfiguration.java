@@ -15,7 +15,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Configuration
-@Order(2)
 public class OrgWebSecurityConfiguration {
     @Autowired
     private OrganizationDetailsServiceImpl organizationDetailsService;

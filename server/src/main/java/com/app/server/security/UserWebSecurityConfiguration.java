@@ -16,7 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Configuration
-@Order(1)
+@Order(0)
 public class UserWebSecurityConfiguration {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
