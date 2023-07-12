@@ -25,6 +25,9 @@ public class WebSecurityConfiguration {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    @Autowired
+    private OrganizationDetailsServiceImpl organizationDetailsService;
+
     @Bean
     @CrossOrigin
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -71,5 +74,13 @@ public class WebSecurityConfiguration {
         userAuthenticationProvider.setUserDetailsService(userDetailsService);
         userAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return userAuthenticationProvider;
+    }
+
+    @Bean
+    public DaoAuthenticationProvider orgAuthProvider() {
+        DaoAuthenticationProvider orgAuthenticationProvider = new DaoAuthenticationProvider();
+        orgAuthenticationProvider.setUserDetailsService(organizationDetailsService);
+        orgAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        return orgAuthenticationProvider;
     }
 }
