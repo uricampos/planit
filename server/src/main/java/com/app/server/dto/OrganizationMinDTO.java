@@ -13,7 +13,7 @@ public class OrganizationMinDTO {
 
     public OrganizationMinDTO(Organization organization) {
         this.id = organization.getId();
-        this.email = organization.getEmail();
+        this.email = organization.getUsername();
         this.description = organization.getDescription();
         this.name = organization.getName();
     }

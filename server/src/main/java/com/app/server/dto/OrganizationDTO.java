@@ -23,7 +23,7 @@ public class OrganizationDTO {
 
     public OrganizationDTO(Organization organization) {
         this.id = organization.getId();
-        this.email = organization.getEmail();
+        this.email = organization.getUsername();
         this.name = organization.getName();
         this.description = organization.getDescription();
         this.appointments = minimizeAppointments(organization.getAppointments());

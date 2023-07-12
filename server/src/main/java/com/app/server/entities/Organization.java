@@ -2,21 +2,22 @@ package com.app.server.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_organizations")
-public class Organization implements Serializable {
+public class Organization implements UserDetails, Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "Email can't be null")
-    private String email;
+    private String username;
     @NotBlank(message = "Password can't be null")
     private String password;
     @NotBlank(message = "Name can't be null")
@@ -33,20 +34,45 @@ public class Organization implements Serializable {
     public Organization() {
     }
 
-    public Organization(Long id, String email, String password, String name, String description) {
+    public Organization(Long id, String username, String password, String name, String description) {
         this.id = id;
-        this.email = email;
+        this.username = username;
         this.password = password;
         this.name = name;
         this.description = description;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(new SimpleGrantedAuthority("ORG"));
     }
 
     public String getPassword() {
