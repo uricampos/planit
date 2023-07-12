@@ -33,6 +33,7 @@ public class OrganizationService {
 
     public Organization save(OrganizationRegisterDAO organizationRegisterDAO) {
         Organization org = new Organization(organizationRegisterDAO);
+        org.setPassword(passwordEncoder.encode(organizationRegisterDAO.getPassword()));
         return organizationRepository.save(org);
     }
 }
