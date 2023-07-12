@@ -1,5 +1,6 @@
 package com.app.server.entities;
 
+import com.app.server.dto.OrganizationRegisterDAO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
@@ -40,6 +41,12 @@ public class Organization implements UserDetails, Serializable {
         this.password = password;
         this.name = name;
         this.description = description;
+    }
+
+    public Organization(OrganizationRegisterDAO organizationRegisterDAO) {
+        this.name = organizationRegisterDAO.getName();
+        this.username = organizationRegisterDAO.getUsername();
+        this.description = organizationRegisterDAO.getPassword();
     }
 
     public String getUsername() {

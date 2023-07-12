@@ -4,7 +4,7 @@ import com.app.server.entities.Organization;
 
 public class OrganizationMinDTO {
     private Long id;
-    private String email;
+    private String username;
     private String description;
     private String name;
 
@@ -13,7 +13,7 @@ public class OrganizationMinDTO {
 
     public OrganizationMinDTO(Organization organization) {
         this.id = organization.getId();
-        this.email = organization.getUsername();
+        this.username = organization.getUsername();
         this.description = organization.getDescription();
         this.name = organization.getName();
     }
@@ -26,12 +26,12 @@ public class OrganizationMinDTO {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getDescription() {
