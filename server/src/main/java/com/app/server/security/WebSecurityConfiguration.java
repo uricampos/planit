@@ -60,6 +60,7 @@ public class WebSecurityConfiguration {
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .authenticationProvider(userAuthProvider())
+                .authenticationProvider(orgAuthProvider())
                 .build();
     }
 
