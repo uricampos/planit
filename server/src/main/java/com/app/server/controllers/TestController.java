@@ -1,3 +1,4 @@
+/*
 package com.app.server.controllers;
 
 import com.app.server.dto.OrganizationDTO;
@@ -40,3 +41,4 @@ public class TestController {
         model.addAttribute("userLogin", userLogin);
     }
 }
+*/

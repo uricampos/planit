@@ -21,11 +21,16 @@ public class UserWebSecurityConfiguration {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    @Autowired
+    private OrganizationDetailsServiceImpl organizationDetailsService;
+
     @Bean
     @CrossOrigin
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
+                .securityMatchers((matcher) -> matcher
+                        .requestMatchers("/auth/*/*").anyRequest())
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/register/**")
                 .permitAll()
@@ -35,8 +40,8 @@ public class UserWebSecurityConfiguration {
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/auth/login")
-                .loginProcessingUrl("/auth/login")
+                .loginPage("/auth/login/user")
+                .loginProcessingUrl("/auth/login/user")
                 .defaultSuccessUrl("/auth/login-success", true)
                 .permitAll()
                 .and()
@@ -55,6 +60,7 @@ public class UserWebSecurityConfiguration {
     public AuthenticationManager userAuthenticationManager(HttpSecurity http) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .authenticationProvider(userAuthProvider())
+                .authenticationProvider(orgAuthProvider())
                 .build();
     }
 
@@ -69,5 +75,20 @@ public class UserWebSecurityConfiguration {
         userAuthenticationProvider.setUserDetailsService(userDetailsService);
         userAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return userAuthenticationProvider;
+    }
+
+    @Bean
+    public AuthenticationManager orgAuthenticationManager(HttpSecurity http) throws Exception {
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
+                .authenticationProvider(orgAuthProvider())
+                .build();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider orgAuthProvider() {
+        DaoAuthenticationProvider orgAuthenticationProvider = new DaoAuthenticationProvider();
+        orgAuthenticationProvider.setUserDetailsService(organizationDetailsService);
+        orgAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        return orgAuthenticationProvider;
     }
 }
