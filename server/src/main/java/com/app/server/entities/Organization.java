@@ -1,6 +1,7 @@
 package com.app.server.entities;
 
 import com.app.server.dto.OrganizationRegisterDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
@@ -79,7 +80,7 @@ public class Organization implements UserDetails, Serializable {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ORG"));
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_ORG"));
     }
 
     public String getPassword() {

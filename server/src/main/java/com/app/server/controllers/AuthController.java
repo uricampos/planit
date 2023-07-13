@@ -53,8 +53,12 @@ public class AuthController {
     }
 
     @GetMapping(value = "/login-success")
-    public ResponseEntity<User> loginSuccessful() {
-        return ResponseEntity.ok().body((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    public ResponseEntity<Object> loginSuccessful() {
+        Object entity = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (entity instanceof User) {
+            return ResponseEntity.ok().body(new UserMinDTO((User) entity));
+        }
+        return ResponseEntity.ok().body(new OrganizationMinDTO((Organization) entity));
     }
 
     @GetMapping(value = "/login/org")
