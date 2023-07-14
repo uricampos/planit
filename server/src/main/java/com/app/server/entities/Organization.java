@@ -19,10 +19,13 @@ public class Organization implements UserDetails, Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "Email can't be null")
+    @Column(nullable = false, unique = true)
     private String username;
     @NotBlank(message = "Password can't be null")
+    @Column(nullable = false)
     private String password;
     @NotBlank(message = "Name can't be null")
+    @Column(nullable = false)
     private String name;
     @Column(columnDefinition = "TEXT")
     @NotBlank(message = "Description can't be null")
