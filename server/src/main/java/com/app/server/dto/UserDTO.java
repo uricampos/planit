@@ -1,7 +1,11 @@
 package com.app.server.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class UserDTO {
+    @NotBlank(message = "Username cannot be null")
     private String username;
+    @NotBlank(message = "Password cannot be null")
     private String password;
 
     public UserDTO() {

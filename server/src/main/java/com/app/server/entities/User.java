@@ -3,6 +3,7 @@ package com.app.server.entities;
 import com.app.server.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,8 +19,10 @@ public class User implements UserDetails, Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "Username can't be null")
     private String username;
     @Column(nullable = false)
+    @NotBlank(message = "Password can't be null")
     private String password;
     @OneToMany(mappedBy = "id.user")
     private Set<Appointment> appointments;

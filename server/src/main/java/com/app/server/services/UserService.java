@@ -17,10 +17,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User save(UserDTO userDTO) {
+    public User save(User user) {
         try {
-            userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-            User user = new User(userDTO);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             return userRepository.save(user);
         } catch (Exception e) {
             throw new UserAlreadyExistsException(e.getMessage());

@@ -26,14 +26,14 @@ public class AuthController {
     private OrganizationService organizationService;
 
     @PostMapping(value = "/register/user")
-    public ResponseEntity<UserMinDTO> saveUserRegister(@RequestBody UserDTO userDTO) {
-        UserMinDTO user = new UserMinDTO(userService.save(userDTO));
+    public ResponseEntity<UserMinDTO> saveUserRegister(@RequestBody @Valid User user) {
+        UserMinDTO u = new UserMinDTO(userService.save(user));
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(user.getId())
                 .toUri();
-        return ResponseEntity.created(uri).body(user);
+        return ResponseEntity.created(uri).body(u);
     }
 
     @PostMapping(value = "/register/org")

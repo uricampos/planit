@@ -18,6 +18,13 @@ public class OrganizationMinDTO {
         this.name = organization.getName();
     }
 
+    public OrganizationMinDTO(OrganizationDTO org) {
+        this.id = org.getId();
+        this.username = org.getUsername();
+        this.description = org.getDescription();
+        this.name = org.getName();
+    }
+
     public Long getId() {
         return id;
     }
