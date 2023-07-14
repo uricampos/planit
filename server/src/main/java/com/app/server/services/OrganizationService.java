@@ -31,9 +31,8 @@ public class OrganizationService {
         return new OrganizationDTO(organizationRepository.findById(id).get());
     }
 
-    public Organization save(OrganizationRegisterDTO organizationRegisterDTO) {
-        Organization org = new Organization(organizationRegisterDTO);
-        org.setPassword(passwordEncoder.encode(organizationRegisterDTO.getPassword()));
-        return organizationRepository.save(org);
+    public Organization save(Organization organization) {
+        organization.setPassword(passwordEncoder.encode(organization.getPassword()));
+        return organizationRepository.save(organization);
     }
 }

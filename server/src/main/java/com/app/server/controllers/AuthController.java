@@ -6,6 +6,7 @@ import com.app.server.entities.User;
 import com.app.server.entities.EntityLogin;
 import com.app.server.services.OrganizationService;
 import com.app.server.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,8 +37,8 @@ public class AuthController {
     }
 
     @PostMapping(value = "/register/org")
-    public ResponseEntity<OrganizationMinDTO> saveOrgRegister(@RequestBody OrganizationRegisterDTO organizationRegisterDTO) {
-        OrganizationMinDTO org = new OrganizationMinDTO(organizationService.save(organizationRegisterDTO));
+    public ResponseEntity<OrganizationMinDTO> saveOrgRegister(@RequestBody @Valid Organization organization) {
+        OrganizationMinDTO org = new OrganizationMinDTO(organizationService.save(organization));
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
