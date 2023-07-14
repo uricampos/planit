@@ -44,7 +44,7 @@ public class WebSecurityConfiguration {
                 .defaultSuccessUrl("/auth/login-success", true)
                 .permitAll()
                 .and()
-                .authenticationManager(userAuthenticationManager(http))
+                .authenticationManager(authenticationManager(http))
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
@@ -56,7 +56,7 @@ public class WebSecurityConfiguration {
 
     @Bean
     @Primary
-    public AuthenticationManager userAuthenticationManager(HttpSecurity http) throws Exception {
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .authenticationProvider(userAuthProvider())
                 .authenticationProvider(orgAuthProvider())
