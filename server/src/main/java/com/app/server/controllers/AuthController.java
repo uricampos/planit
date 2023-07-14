@@ -1,10 +1,9 @@
 package com.app.server.controllers;
 
 import com.app.server.dto.*;
-import com.app.server.entities.OrgLogin;
 import com.app.server.entities.Organization;
 import com.app.server.entities.User;
-import com.app.server.entities.UserLogin;
+import com.app.server.entities.EntityLogin;
 import com.app.server.services.OrganizationService;
 import com.app.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +46,9 @@ public class AuthController {
         return ResponseEntity.created(uri).body(org);
     }
 
-    @GetMapping(value = "/login/user")
-    public void login(Model model, UserLogin userLogin) {
-        model.addAttribute("userLogin", userLogin);
+    @GetMapping(value = "/login")
+    public void login(Model model, EntityLogin entityLogin) {
+        model.addAttribute("entityLogin", entityLogin);
     }
 
     @GetMapping(value = "/login-success")
@@ -59,15 +58,5 @@ public class AuthController {
             return ResponseEntity.ok().body(new UserMinDTO((User) entity));
         }
         return ResponseEntity.ok().body(new OrganizationMinDTO((Organization) entity));
-    }
-
-    @GetMapping(value = "/login/org")
-    public void orgLogin(Model model, OrgLogin orgLogin) {
-        model.addAttribute("orgLogin", orgLogin);
-    }
-
-    @GetMapping("/org-login-success")
-    public ResponseEntity<OrganizationMinDTO> orgLoginSuccessful() {
-        return ResponseEntity.ok().body(new OrganizationMinDTO((Organization) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
     }
 }

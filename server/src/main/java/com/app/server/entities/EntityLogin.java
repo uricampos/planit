@@ -1,15 +1,15 @@
 package com.app.server.entities;
 
-public class OrgLogin {
+public class EntityLogin {
     private String username;
     private String password;
 
-    public OrgLogin() {
-    }
-
-    public OrgLogin(String username, String password) {
+    public EntityLogin(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public EntityLogin() {
     }
 
     public String getUsername() {
