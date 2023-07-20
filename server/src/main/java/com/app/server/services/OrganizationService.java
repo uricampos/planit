@@ -28,11 +28,17 @@ public class OrganizationService {
     }
 
     public OrganizationDTO findById(Long id) {
-        return new OrganizationDTO(organizationRepository.findById(id).get());
+        return new OrganizationDTO(organizationRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Organization not found.")));
     }
 
     public OrganizationDTO save(Organization organization) {
         organization.setPassword(passwordEncoder.encode(organization.getPassword()));
         return new OrganizationDTO(organizationRepository.save(organization));
+    }
+
+    public Organization findOrganizationById(Long id) {
+        return organizationRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Organization not found."));
     }
 }

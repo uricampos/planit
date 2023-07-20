@@ -1,5 +1,6 @@
 package com.app.server.services;
 
+import com.app.server.dto.ProductDTO;
 import com.app.server.entities.Product;
 import com.app.server.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,9 @@ public class ProductService {
 
     public List<Product> findByOrganizationId(Long id) {
         return productRepository.findByOrganizationId(id);
+    }
+
+    public ProductDTO save(Product product) {
+        return new ProductDTO(productRepository.save(product));
     }
 }
