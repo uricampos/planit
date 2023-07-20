@@ -20,16 +20,18 @@ public class Product implements Serializable {
     @Column(columnDefinition = "TEXT")
     private String description;
     private Double price;
+    private Integer duration;
 
     public Product() {
     }
 
-    public Product(Long id, Organization organization, String name, String description, Double price) {
+    public Product(Long id, Organization organization, String name, String description, Double price, Integer duration) {
         this.id = id;
         this.organization = organization;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.duration = duration;
     }
 
     public Long getId() {
@@ -38,6 +40,14 @@ public class Product implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     @JsonIgnore

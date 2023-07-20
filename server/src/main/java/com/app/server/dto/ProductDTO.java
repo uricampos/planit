@@ -8,6 +8,7 @@ public class ProductDTO {
     private String name;
     private String description;
     private Double price;
+    private Integer duration;
 
     public ProductDTO() {
     }
@@ -17,6 +18,15 @@ public class ProductDTO {
         this.name = product.getName();
         this.description = product.getDescription();
         this.price = product.getPrice();
+        this.duration = product.getDuration();
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     public Long getId() {
