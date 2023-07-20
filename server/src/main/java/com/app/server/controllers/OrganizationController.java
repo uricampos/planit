@@ -36,7 +36,7 @@ public class OrganizationController {
         return ResponseEntity.ok().body(organizationService.findById(id));
     }
 
-    @PreAuthorize("hasRole('ROLE_ORG')")
+    @PreAuthorize("hasRole('ROLE_ORG') and principal.id == #id")
     @PostMapping(value = "/{id}/add")
     public ResponseEntity<ProductDTO> addProduct(@RequestBody Product product, @PathVariable Long id) {
         Organization o = organizationService.findOrganizationById(id);
