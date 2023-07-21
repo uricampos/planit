@@ -3,17 +3,21 @@ package com.app.server.controllers;
 import com.app.server.dto.OrganizationDTO;
 import com.app.server.dto.OrganizationMinDTO;
 import com.app.server.dto.ProductDTO;
-import com.app.server.entities.Organization;
-import com.app.server.entities.Product;
+import com.app.server.entities.*;
+import com.app.server.repositories.AppointmentRepository;
+import com.app.server.services.OrderItemService;
+import com.app.server.services.OrderService;
 import com.app.server.services.OrganizationService;
 import com.app.server.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -25,6 +29,15 @@ public class OrganizationController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private OrderItemService orderItemService;
+
+    @Autowired
+    private AppointmentRepository appointmentRepository;
 
     @GetMapping
     public ResponseEntity<List<OrganizationMinDTO>> organizations() {
@@ -48,5 +61,23 @@ public class OrganizationController {
                 .buildAndExpand(p.getId())
                 .toUri();
         return ResponseEntity.created(uri).body(p);
+    }
+
+    @PostMapping(value = "/{id}/appointment")
+    public ResponseEntity<Appointment> insertAppointment(@RequestBody AppointmentRegister appointmentRegister, @PathVariable Long id) {
+        Organization org = organizationService.findOrganizationById(id);
+        User usr = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Order order = orderService.save(new Order(null, usr));
+        for (OrderItem item : appointmentRegister.getItems()) {
+            item.setOrder(order);
+        }
+        orderItemService.saveAll(appointmentRegister.getItems().stream().toList());
+        Appointment appointment = new Appointment(usr, org, appointmentRegister.getDate(), orderService.findById(order.getId()));
+        return ResponseEntity.ok().body(appointment);
+    }
+
+    @GetMapping(value = "/test")
+    public List<Appointment> getAll() {
+        return appointmentRepository.findAll();
     }
 }
