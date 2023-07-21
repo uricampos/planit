@@ -5,10 +5,7 @@ import com.app.server.dto.OrganizationMinDTO;
 import com.app.server.dto.ProductDTO;
 import com.app.server.entities.*;
 import com.app.server.repositories.AppointmentRepository;
-import com.app.server.services.OrderItemService;
-import com.app.server.services.OrderService;
-import com.app.server.services.OrganizationService;
-import com.app.server.services.ProductService;
+import com.app.server.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,6 +32,9 @@ public class OrganizationController {
 
     @Autowired
     private OrderItemService orderItemService;
+
+    @Autowired
+    private AppointmentService appointmentService;
 
     @Autowired
     private AppointmentRepository appointmentRepository;
@@ -73,7 +73,7 @@ public class OrganizationController {
         }
         orderItemService.saveAll(appointmentRegister.getItems().stream().toList());
         Appointment appointment = new Appointment(usr, org, appointmentRegister.getDate(), orderService.findById(order.getId()));
-        return ResponseEntity.ok().body(appointment);
+        return ResponseEntity.ok().body(appointmentService.save(appointment));
     }
 
     @GetMapping(value = "/test")
