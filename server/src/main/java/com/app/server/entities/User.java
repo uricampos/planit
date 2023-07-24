@@ -24,7 +24,7 @@ public class User implements UserDetails, Serializable {
     @Column(nullable = false)
     @NotBlank(message = "Password can't be null")
     private String password;
-    @OneToMany(mappedBy = "id.user")
+    @OneToMany(mappedBy = "user")
     private Set<Appointment> appointments;
 
     public User(Long id, String username, String password) {

@@ -15,15 +15,16 @@ public class Appointment implements Serializable {
     @EmbeddedId
     private AppointmentPK id = new AppointmentPK();
     private Date date;
-    @OneToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Appointment(User user, Organization organization, Date date, Order order) {
-        id.setUser(user);
+        id.setOrder(order);
         id.setOrganization(organization);
+        this.user = user;
         this.date = date;
-        this.order = order;
     }
 
     public Appointment() {
@@ -31,7 +32,7 @@ public class Appointment implements Serializable {
 
     @JsonIgnore
     public User getUser() {
-        return id.getUser();
+        return user;
     }
     @JsonIgnore
     public Organization getOrganization() {
@@ -39,7 +40,7 @@ public class Appointment implements Serializable {
     }
 
     public void setUser(User user) {
-        id.setUser(user);
+        this.user = user;
     }
 
     public void setOrganization(Organization organization) {
@@ -55,11 +56,11 @@ public class Appointment implements Serializable {
     }
 
     public Order getOrder() {
-        return order;
+        return id.getOrder();
     }
 
     public void setOrder(Order order) {
-        this.order = order;
+        id.setOrder(order);
     }
 
     @Override
@@ -67,11 +68,11 @@ public class Appointment implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Appointment that = (Appointment) o;
-        return Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(order, that.order);
+        return Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, order);
+        return Objects.hash(id, date, user);
     }
 }

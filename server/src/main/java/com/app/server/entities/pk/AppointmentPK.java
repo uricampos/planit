@@ -1,10 +1,12 @@
 package com.app.server.entities.pk;
 
+import com.app.server.entities.Order;
 import com.app.server.entities.Organization;
 import com.app.server.entities.User;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,9 +14,9 @@ import java.util.Objects;
 @Embeddable
 public class AppointmentPK implements Serializable {
     private static final long serialVersionUID = 1L;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
     @ManyToOne
     @JoinColumn(name = "organization_id")
     private Organization organization;
@@ -22,17 +24,17 @@ public class AppointmentPK implements Serializable {
     public AppointmentPK() {
     }
 
-    public AppointmentPK(User user, Organization organization) {
-        this.user = user;
+    public AppointmentPK(Order order, Organization organization) {
+        this.order = order;
         this.organization = organization;
     }
 
-    public User getUser() {
-        return user;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Organization getOrganization() {
@@ -48,11 +50,11 @@ public class AppointmentPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AppointmentPK that = (AppointmentPK) o;
-        return Objects.equals(user, that.user) && Objects.equals(organization, that.organization);
+        return Objects.equals(order, that.order) && Objects.equals(organization, that.organization);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user, organization);
+        return Objects.hash(order, organization);
     }
 }
