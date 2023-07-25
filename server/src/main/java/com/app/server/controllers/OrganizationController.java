@@ -79,6 +79,16 @@ public class OrganizationController {
         return ResponseEntity.ok().body(appointmentService.save(appointment));
     }
 
+    @PreAuthorize("hasRole('ROLE_ORG') and principal.id == #id")
+    @PostMapping(value = "/{id}/open")
+    public ResponseEntity<OpenHour> insertHour(@RequestBody OpenHour openHour, @PathVariable Long id) {
+        Organization o = organizationService.findOrganizationById(id);
+        openHour.setOrganization(o);
+        OpenHour op = openHourService.save(openHour);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(op.getId()).toUri();
+        return ResponseEntity.created(uri).body(op);
+    }
+
     @GetMapping(value = "/test")
     public List<Appointment> getAll() {
         return appointmentRepository.findAll();
