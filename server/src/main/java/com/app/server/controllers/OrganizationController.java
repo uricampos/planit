@@ -66,6 +66,7 @@ public class OrganizationController {
         return ResponseEntity.created(uri).body(p);
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping(value = "/{id}/appointment")
     public ResponseEntity<Appointment> insertAppointment(@RequestBody AppointmentRegister appointmentRegister, @PathVariable Long id) {
         Organization org = organizationService.findOrganizationById(id);
