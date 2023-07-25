@@ -1,5 +1,6 @@
 package com.app.server.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -54,6 +55,7 @@ public class OpenHour implements Serializable {
         this.end = end;
     }
 
+    @JsonIgnore
     public Organization getOrganization() {
         return organization;
     }

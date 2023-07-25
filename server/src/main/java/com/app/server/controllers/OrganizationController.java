@@ -37,6 +37,9 @@ public class OrganizationController {
     private AppointmentService appointmentService;
 
     @Autowired
+    private OpenHourService openHourService;
+
+    @Autowired
     private AppointmentRepository appointmentRepository;
 
     @GetMapping

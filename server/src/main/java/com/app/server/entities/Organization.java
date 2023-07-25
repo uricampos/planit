@@ -36,6 +36,9 @@ public class Organization implements UserDetails, Serializable {
     @OneToMany(mappedBy = "organization")
     private Set<Product> products = new HashSet<>();
 
+    @OneToMany(mappedBy = "organization")
+    private Set<OpenHour> openHours = new HashSet<>();
+
     public Organization() {
     }
 
@@ -51,6 +54,10 @@ public class Organization implements UserDetails, Serializable {
         this.name = organizationRegisterDTO.getName();
         this.username = organizationRegisterDTO.getUsername();
         this.description = organizationRegisterDTO.getPassword();
+    }
+
+    public Set<OpenHour> getOpenHours() {
+        return openHours;
     }
 
     public String getUsername() {
