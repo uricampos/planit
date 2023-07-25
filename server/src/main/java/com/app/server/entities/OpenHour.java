@@ -4,18 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.time.LocalTime;
+import java.util.Date;
 
 @Entity
-@Table(name = "tb_open_hour")
+@Table(name = "tb_open")
 public class OpenHour implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalTime begin;
-    private LocalTime end;
+    private Date beginHour;
+    private Date endHour;
 
     @ManyToOne
     @JoinColumn(name = "organization_id")
@@ -24,10 +24,10 @@ public class OpenHour implements Serializable {
     public OpenHour() {
     }
 
-    public OpenHour(Long id, LocalTime begin, LocalTime end, Organization organization) {
+    public OpenHour(Long id, Date beginHour, Date endHour, Organization organization) {
         this.id = id;
-        this.begin = begin;
-        this.end = end;
+        this.beginHour = beginHour;
+        this.endHour = endHour;
         this.organization = organization;
     }
 
@@ -39,20 +39,20 @@ public class OpenHour implements Serializable {
         this.id = id;
     }
 
-    public LocalTime getBegin() {
-        return begin;
+    public Date getBeginHour() {
+        return beginHour;
     }
 
-    public void setBegin(LocalTime begin) {
-        this.begin = begin;
+    public void setBeginHour(Date beginHour) {
+        this.beginHour = beginHour;
     }
 
-    public LocalTime getEnd() {
-        return end;
+    public Date getEndHour() {
+        return endHour;
     }
 
-    public void setEnd(LocalTime end) {
-        this.end = end;
+    public void setEndHour(Date endHour) {
+        this.endHour = endHour;
     }
 
     @JsonIgnore

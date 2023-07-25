@@ -1,6 +1,7 @@
 package com.app.server.dto;
 
 import com.app.server.entities.Appointment;
+import com.app.server.entities.OpenHour;
 import com.app.server.entities.Organization;
 import com.app.server.entities.Product;
 
@@ -18,6 +19,8 @@ public class OrganizationDTO {
     private List<AppointmentMinDTO> appointments = new ArrayList<>();
     private Set<ProductDTO> products = new HashSet<>();
 
+    private Set<OpenHour> openHours = new HashSet<>();
+
     public OrganizationDTO() {
     }
 
@@ -28,6 +31,7 @@ public class OrganizationDTO {
         this.description = organization.getDescription();
         this.appointments = minimizeAppointments(organization.getAppointments());
         this.products = minimizeProducts(organization.getProducts());
+        this.openHours = organization.getOpenHours();
     }
 
     private List<AppointmentMinDTO> minimizeAppointments(Set<Appointment> appointments) {
@@ -40,6 +44,10 @@ public class OrganizationDTO {
         return products.stream()
                 .map(product -> new ProductDTO(product))
                 .collect(Collectors.toSet());
+    }
+
+    public Set<OpenHour> getOpenHours() {
+        return openHours;
     }
 
     public Set<ProductDTO> getProducts() {
