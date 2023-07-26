@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
 
@@ -62,8 +63,8 @@ public class TestConfig implements CommandLineRunner {
         OrderItem oi3 = new OrderItem(p2, or2, 1, p2.getPrice());
         orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3));
 
-        Appointment a1 = new Appointment(u1, o1, Date.valueOf("2023-05-07"), or1);
-        Appointment a2 = new Appointment(u2, o1, Date.valueOf("2023-05-07"), or2);
+        Appointment a1 = new Appointment(u1, o1, LocalDateTime.now(), or1);
+        Appointment a2 = new Appointment(u2, o1, LocalDateTime.now().plusHours(1), or2);
         //Appointment a3 = new Appointment(u2, o1, Date.valueOf("2023-05-07"), or3);
         appointmentRepository.saveAll(Arrays.asList(a1, a2));
     }

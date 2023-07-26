@@ -1,10 +1,12 @@
 package com.app.server.entities;
 
 import com.app.server.entities.pk.AppointmentPK;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -14,13 +16,15 @@ public class Appointment implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     private AppointmentPK id = new AppointmentPK();
-    private Date date;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Appointment(User user, Organization organization, Date date, Order order) {
+    public Appointment(User user, Organization organization, LocalDateTime date, Order order) {
         id.setOrder(order);
         id.setOrganization(organization);
         this.user = user;
@@ -47,11 +51,11 @@ public class Appointment implements Serializable {
         id.setOrganization(organization);
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -74,5 +78,13 @@ public class Appointment implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, date, user);
+    }
+
+    public LocalDateTime getEnding() {
+        Integer total = 0;
+        for (OrderItem o : getOrder().getItems()) {
+            total += o.getProduct().getDuration() * o.getQuantity();
+        }
+        return date.plusMinutes(total);
     }
 }

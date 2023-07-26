@@ -1,24 +1,28 @@
 package com.app.server.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class AppointmentRegister {
-    private Date date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime date;
     private List<OrderItem> items = new ArrayList<>();
 
     public AppointmentRegister() {
     }
 
-    public AppointmentRegister(Date date, List<OrderItem> items) {
+    public AppointmentRegister(LocalDateTime date, List<OrderItem> items) {
         this.date = date;
         this.items = items;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
