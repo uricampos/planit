@@ -16,7 +16,7 @@ public class Appointment implements Serializable {
     @EmbeddedId
     private AppointmentPK id = new AppointmentPK();
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-ddTHH:mmz")
     private LocalDateTime start;
 
     @ManyToOne
@@ -79,7 +79,7 @@ public class Appointment implements Serializable {
         return Objects.hash(id, start, user);
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-ddTHH:mm")
     public LocalDateTime getEnding() {
         Integer total = 0;
         for (OrderItem o : getOrder().getItems()) {

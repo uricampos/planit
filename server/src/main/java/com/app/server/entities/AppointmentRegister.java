@@ -6,24 +6,24 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class AppointmentRegister {
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mmz")
+    private LocalDateTime start;
     private List<OrderItem> items = new ArrayList<>();
 
     public AppointmentRegister() {
     }
 
     public AppointmentRegister(LocalDateTime date, List<OrderItem> items) {
-        this.date = date;
+        this.start = date;
         this.items = items;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getStart() {
+        return start;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setDate(LocalDateTime start) {
+        this.start = start;
     }
 
     public List<OrderItem> getItems() {

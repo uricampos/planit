@@ -76,7 +76,7 @@ public class OrganizationController {
             item.setOrder(order);
         }
         orderItemService.saveAll(appointmentRegister.getItems().stream().toList());
-        Appointment appointment = new Appointment(usr, org, appointmentRegister.getDate(), orderService.findById(order.getId()));
+        Appointment appointment = new Appointment(usr, org, appointmentRegister.getStart(), orderService.findById(order.getId()));
         return ResponseEntity.ok().body(appointmentService.save(appointment));
     }
 
