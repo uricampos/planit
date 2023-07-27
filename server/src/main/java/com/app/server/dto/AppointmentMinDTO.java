@@ -13,7 +13,7 @@ public class AppointmentMinDTO {
     }
 
     public AppointmentMinDTO(Appointment appointment) {
-        this.date = appointment.getDate();
+        this.date = appointment.getStart();
         this.ending = appointment.getEnding();
     }
 

@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -18,17 +17,17 @@ public class Appointment implements Serializable {
     private AppointmentPK id = new AppointmentPK();
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime date;
+    private LocalDateTime start;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Appointment(User user, Organization organization, LocalDateTime date, Order order) {
+    public Appointment(User user, Organization organization, LocalDateTime start, Order order) {
         id.setOrder(order);
         id.setOrganization(organization);
         this.user = user;
-        this.date = date;
+        this.start = start;
     }
 
     public Appointment() {
@@ -51,12 +50,12 @@ public class Appointment implements Serializable {
         id.setOrganization(organization);
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getStart() {
+        return start;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setDate(LocalDateTime start) {
+        this.start = start;
     }
 
     public Order getOrder() {
@@ -72,19 +71,20 @@ public class Appointment implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Appointment that = (Appointment) o;
-        return Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(user, that.user);
+        return Objects.equals(id, that.id) && Objects.equals(start, that.start) && Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, user);
+        return Objects.hash(id, start, user);
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     public LocalDateTime getEnding() {
         Integer total = 0;
         for (OrderItem o : getOrder().getItems()) {
             total += o.getProduct().getDuration() * o.getQuantity();
         }
-        return date.plusMinutes(total);
+        return start.plusMinutes(total);
     }
 }
