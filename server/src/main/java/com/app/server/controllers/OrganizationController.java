@@ -6,6 +6,7 @@ import com.app.server.dto.ProductDTO;
 import com.app.server.entities.*;
 import com.app.server.repositories.AppointmentRepository;
 import com.app.server.services.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -65,7 +66,6 @@ public class OrganizationController {
                 .toUri();
         return ResponseEntity.created(uri).body(p);
     }
-
     @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping(value = "/{id}/appointment")
     public ResponseEntity<Appointment> insertAppointment(@RequestBody AppointmentRegister appointmentRegister, @PathVariable Long id) {
@@ -76,7 +76,8 @@ public class OrganizationController {
             item.setOrder(order);
         }
         orderItemService.saveAll(appointmentRegister.getItems());
-        Appointment appointment = new Appointment(usr, org, appointmentRegister.getStart(), orderService.findById(order.getId()));
+        Order o = orderService.findById(order.getId());
+        Appointment appointment = new Appointment(usr, org, appointmentRegister.getStart(), o);
         return ResponseEntity.ok().body(appointmentService.save(appointment));
     }
 

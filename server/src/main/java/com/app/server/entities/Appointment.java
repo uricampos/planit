@@ -53,7 +53,7 @@ public class Appointment implements Serializable {
         return start;
     }
 
-    public void setDate(LocalDateTime start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 

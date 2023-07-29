@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
@@ -46,7 +47,7 @@ public class TestConfig implements CommandLineRunner {
         Organization o1 = new Organization(null, "joca@jocabarber.com", "pwd", "Joca's barber", "barber");
         organizationRepository.save(o1);
 
-        OpenHour oh = new OpenHour(null, Date.valueOf("2023-05-07"), Date.valueOf("2023-05-08"), o1);
+        OpenHour oh = new OpenHour(null, LocalTime.now(), LocalTime.now(), o1);
         openHourRepository.save(oh);
 
         Product p1 = new Product(null, o1, "Disfarce", "corte de cria", 25.0, 20);
