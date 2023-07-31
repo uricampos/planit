@@ -6,6 +6,7 @@ import com.app.server.dto.ProductDTO;
 import com.app.server.entities.*;
 import com.app.server.repositories.AppointmentRepository;
 import com.app.server.services.*;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,9 @@ public class OrganizationController {
     @Autowired
     private AppointmentRepository appointmentRepository;
 
+    @Autowired
+    private EntityManager entityManager;
+
     @GetMapping
     public ResponseEntity<List<OrganizationMinDTO>> organizations() {
         return ResponseEntity.ok().body(organizationService.findAll());
@@ -75,6 +79,7 @@ public class OrganizationController {
         for (OrderItem item : appointmentRegister.getItems()) {
             item.setOrder(order);
         }
+        entityManager.clear();
         orderItemService.saveAll(appointmentRegister.getItems());
         Order o = orderService.findById(order.getId());
         Appointment appointment = new Appointment(usr, org, appointmentRegister.getStart(), o);

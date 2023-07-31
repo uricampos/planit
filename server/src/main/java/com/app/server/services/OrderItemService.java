@@ -15,4 +15,8 @@ public class OrderItemService {
     public List<OrderItem> saveAll(List<OrderItem> items) {
         return orderItemRepository.saveAll(items);
     }
+
+    public OrderItem save(OrderItem item) {
+        return orderItemRepository.save(item);
+    }
 }
