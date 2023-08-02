@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.session.SessionManagementFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -28,9 +29,16 @@ public class WebSecurityConfiguration {
     private OrganizationDetailsServiceImpl organizationDetailsService;
 
     @Bean
+    CorsFilter corsFilter() {
+        CorsFilter filter = new CorsFilter();
+        return filter;
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
+                .addFilterBefore(corsFilter(), SessionManagementFilter.class)
                 .securityMatchers((matcher) -> matcher
                         .requestMatchers("/auth/*/*").anyRequest())
                 .authorizeHttpRequests()
