@@ -22,14 +22,18 @@ public class User implements UserDetails, Serializable {
     @NotBlank(message = "Username can't be null")
     private String username;
     @Column(nullable = false)
+    @NotBlank(message = "Name can't be null")
+    private String name;
+    @Column(nullable = false)
     @NotBlank(message = "Password can't be null")
     private String password;
     @OneToMany(mappedBy = "user")
     private Set<Appointment> appointments;
 
-    public User(Long id, String username, String password) {
+    public User(Long id, String username, String name, String password) {
         this.id = id;
         this.username = username;
+        this.name = name;
         this.password = password;
     }
 
@@ -39,6 +43,14 @@ public class User implements UserDetails, Serializable {
     public User(UserDTO userDTO) {
         this.username = userDTO.getUsername();
         this.password = userDTO.getPassword();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @JsonIgnore

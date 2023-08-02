@@ -5,6 +5,7 @@ import com.app.server.entities.User;
 public class UserMinDTO {
     private Long id;
     private String username;
+    private String name;
 
     public UserMinDTO() {
     }
@@ -12,6 +13,15 @@ public class UserMinDTO {
     public UserMinDTO(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
+        this.name = user.getName();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getId() {
