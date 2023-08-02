@@ -9,11 +9,15 @@ import { api } from '../../api';
 import './Styles/styles.css';
 
 const onSubmit = (values, actions) => {
-    Axios.post(`${api}/auth/login`, {
-        username: values.email,
-        password: values.password,
-    })
-        .then(response => console.log(response))
+    var formData = new FormData();
+    formData.append('username', values.email);
+    formData.append('password', values.password);
+
+    console.log(formData);
+    console.log(JSON.stringify(formData))
+
+    Axios.post(`${api}/auth/login`, formData)
+        .then((response) => console.log(response))
         .catch((err) => console.log(err));
     actions.resetForm();
 };
@@ -100,7 +104,7 @@ function Login() {
                                     values.email == '' ||
                                     values.password == ''
                                 }
-                                onClick={() => console.log("redirect")}
+                                onClick={() => console.log('redirect')}
                             >
                                 Login
                             </button>

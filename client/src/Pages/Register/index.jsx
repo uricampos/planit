@@ -7,9 +7,9 @@ import './Styles/styles.css';
 import { registerSchema } from '../Schemas';
 
 const onSubmit = (values, actions) => {
-    Axios.post(`${api}/auth/register`, {
-        username: values.name,
-        email: values.email,
+    Axios.post(`${api}/auth/register/user`, {
+        username: values.email,
+        name: values.name,
         password: values.password,
     })
         .then((response) => console.log(response))
@@ -97,7 +97,7 @@ function Register() {
                         <p className="error-paragraph">{errors.email}</p>
                     )}
                     <div className="div-register-password">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">Senha</label>
                         <input
                             id="password"
                             type="password"
@@ -116,9 +116,7 @@ function Register() {
                         <p className="error-paragraph">{errors.password}</p>
                     )}
                     <div className="div-register-confirmPassword">
-                        <label htmlFor="confirmPassword">
-                            Confirm Password
-                        </label>
+                        <label htmlFor="confirmPassword">Confirmar senha</label>
                         <input
                             id="confirmPassword"
                             type="password"
