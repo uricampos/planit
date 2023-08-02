@@ -1,6 +1,7 @@
 package com.app.server.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -17,6 +18,10 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.SessionManagementFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -28,19 +33,27 @@ public class WebSecurityConfiguration {
     @Autowired
     private OrganizationDetailsServiceImpl organizationDetailsService;
 
-    @Bean
-    CorsFilter corsFilter() {
-        CorsFilter filter = new CorsFilter();
-        return filter;
-    }
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        final org.springframework.web.cors.UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowCredentials(true);
+//        config.addAllowedOriginPattern("http://localhost:5173/**");
+//        config.addAllowedHeader("*");
+//        config.addAllowedMethod("*");
+//        source.registerCorsConfiguration("/**", config);
+//        CorsFilter corsFilter = new CorsFilter(source);
+//        return corsFilter;
+//    }
 
     @Bean
+    @CrossOrigin
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
                 .cors()
                 .and()
-                .addFilterBefore(corsFilter(), SessionManagementFilter.class)
+                //.addFilterBefore(corsFilter(), SessionManagementFilter.class)
                 .securityMatchers((matcher) -> matcher
                         .requestMatchers("/auth/*/*").anyRequest())
                 .authorizeHttpRequests()

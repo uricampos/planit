@@ -18,6 +18,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/auth")
+@CrossOrigin
 public class AuthController {
     @Autowired
     private UserService userService;
