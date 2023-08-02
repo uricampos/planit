@@ -5,6 +5,7 @@ import com.app.server.dto.OrganizationMinDTO;
 import com.app.server.dto.OrganizationRegisterDTO;
 import com.app.server.entities.Organization;
 import com.app.server.repositories.OrganizationRepository;
+import com.app.server.services.exceptions.OrganizationNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class OrganizationService {
 
     public OrganizationDTO findById(Long id) {
         return new OrganizationDTO(organizationRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Organization not found.")));
+                .orElseThrow(() -> new OrganizationNotFoundException("Organization not found.")));
     }
 
     public OrganizationDTO save(Organization organization) {
@@ -39,6 +40,6 @@ public class OrganizationService {
 
     public Organization findOrganizationById(Long id) {
         return organizationRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Organization not found."));
+                .orElseThrow(() -> new OrganizationNotFoundException("Organization not found."));
     }
 }
