@@ -48,11 +48,13 @@ public class AuthController {
     }
 
     @GetMapping(value = "/login")
+    @CrossOrigin(origins = "http://localhost:5173")
     public void login(Model model, EntityLogin entityLogin) {
         model.addAttribute("entityLogin", entityLogin);
     }
 
     @GetMapping(value = "/login-success")
+    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<Object> loginSuccessful() {
         Object entity = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (entity instanceof User) {

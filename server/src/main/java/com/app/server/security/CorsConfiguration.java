@@ -1,3 +1,4 @@
+/*
 package com.app.server.security;
 
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -13,3 +14,4 @@ public class CorsConfiguration implements WebMvcConfigurer {
                 .allowCredentials(true);
     }
 }
+*/
