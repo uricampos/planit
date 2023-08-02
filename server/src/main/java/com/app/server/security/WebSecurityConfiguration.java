@@ -28,7 +28,7 @@ public class WebSecurityConfiguration {
     private OrganizationDetailsServiceImpl organizationDetailsService;
 
     @Bean
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
