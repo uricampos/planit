@@ -18,7 +18,6 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/auth")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AuthController {
     @Autowired
     private UserService userService;
