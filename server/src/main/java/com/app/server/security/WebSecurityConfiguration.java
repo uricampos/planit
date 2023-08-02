@@ -38,6 +38,8 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
+                .cors()
+                .and()
                 .addFilterBefore(corsFilter(), SessionManagementFilter.class)
                 .securityMatchers((matcher) -> matcher
                         .requestMatchers("/auth/*/*").anyRequest())
