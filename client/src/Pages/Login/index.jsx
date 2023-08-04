@@ -9,17 +9,23 @@ import { api } from '../../api';
 import './Styles/styles.css';
 
 const onSubmit = (values, actions) => {
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append('username', values.email);
     formData.append('password', values.password);
 
-    console.log(formData);
-    console.log(JSON.stringify(formData))
-
     Axios.post(`${api}/auth/login`, formData)
-        .then((response) => console.log(response))
+        .then((res) => console.log(res))
         .catch((err) => console.log(err));
     actions.resetForm();
+};
+
+const handleLogin = async () => {
+    try {
+        let data = await Axios.get(`${api}/login-success`);
+        console.log(data)
+    } catch (error) {
+        console.log(error)
+    }
 };
 
 function Login() {
@@ -104,7 +110,7 @@ function Login() {
                                     values.email == '' ||
                                     values.password == ''
                                 }
-                                onClick={() => console.log('redirect')}
+                                onClick={handleLogin}
                             >
                                 Login
                             </button>
