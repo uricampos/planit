@@ -13,19 +13,10 @@ const onSubmit = (values, actions) => {
     formData.append('username', values.email);
     formData.append('password', values.password);
 
-    Axios.post(`${api}/auth/login`, formData)
+    Axios.post(`${api}/auth/login`, formData, { withCredentials: true })
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
     actions.resetForm();
-};
-
-const handleLogin = async () => {
-    try {
-        let data = await Axios.get(`${api}/login-success`);
-        console.log(data)
-    } catch (error) {
-        console.log(error)
-    }
 };
 
 function Login() {
@@ -110,7 +101,6 @@ function Login() {
                                     values.email == '' ||
                                     values.password == ''
                                 }
-                                onClick={handleLogin}
                             >
                                 Login
                             </button>
