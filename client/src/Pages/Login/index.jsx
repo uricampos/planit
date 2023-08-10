@@ -13,8 +13,21 @@ const onSubmit = (values, actions) => {
     formData.append('username', values.email);
     formData.append('password', values.password);
 
-    Axios.post(`${api}/auth/login`, formData, { withCredentials: true })
-        .then((res) => console.log(res))
+    Axios.post(`${api}/auth/login`, formData, {
+        withCredentials: true,
+    })
+        .then((res) => {
+            if (
+                res.request.responseURL ==
+                    'http://localhost:8080/auth/login-success' &&
+                res.data.id &&
+                res.data.username == values.email
+            ) {
+                window.location.pathname = `${res.data.name.replace(' ', '-')}/home`;
+            } else {
+                alert('Usuário ou senha inválidos!')
+            }
+        })
         .catch((err) => console.log(err));
     actions.resetForm();
 };
