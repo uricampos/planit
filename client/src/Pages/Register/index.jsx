@@ -12,7 +12,13 @@ const onSubmit = (values, actions) => {
         name: values.name,
         password: values.password,
     })
-        .then((response) => console.log(response))
+        .then((res) => {
+            if (res.data !== '') {
+                window.location.pathname = '/login'
+            } else {
+                alert('Erro ao registrar. Tente novamente!')
+            }
+        })
         .catch((err) => console.log(err));
     actions.resetForm();
 };
